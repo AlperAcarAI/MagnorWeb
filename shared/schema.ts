@@ -16,3 +16,43 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+export interface KeyStrength {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface Statistic {
+  value: string;
+  label: string;
+}
+
+export interface Partner {
+  name: string;
+  logo?: string;
+}
+
+export interface Service {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface TokenBenefit {
+  title: string;
+  description: string;
+}
+
+export interface ProcessStep {
+  number: number;
+  title: string;
+  description: string;
+}
+
+export interface ContactMethod {
+  icon: string;
+  label: string;
+  value: string;
+  link: string;
+}
