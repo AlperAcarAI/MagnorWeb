@@ -1,60 +1,96 @@
 # Magnor Web3 Marketing Agency Website
 
 ## Overview
-A professional, visually stunning marketing website for Magnor, a Web3 marketing agency. The site showcases services, partner relationships, and value propositions with a modern purple/blue gradient aesthetic perfect for the Web3 space.
+A professional Web3 marketing agency website for Magnor that uses Markchain.io's clean, minimalist design structure while showcasing Magnor's own services, partners, and brand identity. The site emphasizes trust, proven results, and comprehensive Web3 marketing solutions.
 
 ## Project Architecture
 
 ### Frontend
 - **Framework**: React with TypeScript
-- **Routing**: Wouter
+- **Routing**: Wouter (single-page application)
 - **Styling**: Tailwind CSS with shadcn/ui components
 - **Typography**: 
   - Inter for body text and subsection headings
   - Space Grotesk for hero headlines, section headers, and statistics
 - **Color Scheme**: Purple/blue gradients (primary: hsl(262 83% 58%))
 
+### Design Philosophy
+**Layout Structure**: Inspired by Markchain.io's clean, minimal design patterns
+**Content**: 100% Magnor-specific (partners, services, metrics, company info)
+
 ### Key Features Implemented
-1. **Hero Section**: Full-viewport with generated Web3 blockchain background, gradient overlay, and CTAs
-2. **Key Strengths**: 3-column grid showcasing trust, network, and partnership approach with statistics
-3. **Trusted Partners**: Grid of 12 partner logos with grayscale-to-color hover effects
-4. **Services**: 6 service cards covering KOL Marketing, Token Value Creation, PR & Media, Exchange Listing, VC Network, and Market Making
-5. **Token Value Creation**: Detailed breakdown showing 3X campaign budget visualization
-6. **How We Work**: 5-step process timeline
-7. **Contact Section**: Email, website, and Telegram contact methods
-8. **Responsive Design**: Mobile-first approach with breakpoints for tablet and desktop
 
-## Recent Changes (Latest Session)
+1. **Minimal Hero Section**
+   - Clean, centered layout without background image
+   - Company founding info: "Founded in 2020" badge
+   - Location: "Based in Dubai"
+   - Headline: "Empowering Web3 Projects with Trust & Strategy"
+   - Tagline: "— Your Growth Partner in Web3"
+   - CTAs: "Get Started" and "Contact Us"
 
-### Design System Implementation
-- Configured Inter and Space Grotesk fonts from Google Fonts
-- Set up proper color variables in index.css following Web3 aesthetic
-- Generated hero background image showing blockchain network visualization
-- Added smooth scroll behavior for enhanced UX
+2. **Tabbed Case Studies Section**
+   - Three category tabs: Exchanges, DeFi Projects, Gaming & Metaverse
+   - Magnor's real partners: Markchain, Disence, Artrade, LimeWire, SpaceCatch, etc.
+   - Each client card shows custom metrics and project description
+   - "More of our partners" section with additional logos
+   - Interactive tab navigation with shadcn Tabs component
 
-### Component Architecture
-- Single-page application with all sections in `client/src/pages/home.tsx`
-- Proper use of shadcn components (Card, Button, Badge) with elevation system
-- All interactive elements include data-testid attributes for testing
-- Responsive grid layouts that adapt across breakpoints
+3. **Expandable Services Section**
+   - Accordion-style expandable cards for 6 core services:
+     * KOL Marketing (600+ verified influencers)
+     * Token Value Creation (3X volume guarantee)
+     * PR & Media Marketing (Tier-1 coverage)
+     * Tier-1 Exchange Listing (Binance, OKX access)
+     * VC Network (Direct investor access)
+     * Market Making (Liquidity solutions)
+   - Service description always visible, detail bullets expand on click
+   - Chevron icon indicates expand/collapse state
 
-### Technical Implementation Notes
-- Partner logos use placeholder stock images (production would require branded assets for each partner)
-- All buttons use shadcn's built-in hover/active states (no manual elevation classes)
-- Typography hierarchy strictly enforced: Space Grotesk for headers only, Inter for body content
-- Elevation system (hover-elevate, active-elevate-2) applied only to Card components
-- Smooth scroll and transitions enhance premium feel
+4. **Simple Contact Section**
+   - Three contact methods: Email, Website, Telegram
+   - Button-based interface with direct links
+   - Clean, minimal presentation
+
+5. **Responsive Design**
+   - Mobile-first approach with breakpoints for tablet and desktop
+   - Responsive grids that adapt across screen sizes
+   - Tab navigation wraps on mobile devices
+
+## Recent Changes (Latest Session - November 20, 2025)
+
+### Content Migration to Magnor Brand
+- Replaced Markchain.io example content with Magnor's actual partners and services
+- Updated all company information (founded 2020, Dubai location)
+- Reorganized case studies into relevant categories for Magnor's portfolio
+- Restored all 6 original Magnor services with their unique value propositions
+- Updated hero messaging to reflect Magnor's brand voice
+
+### Design Pattern Implementation
+- Implemented Markchain.io's tabbed case study layout
+- Created accordion-style expandable services (following Markchain pattern)
+- Simplified hero section (minimal, no background image)
+- Streamlined contact section to button-based interface
+- Removed "Token Value Creation" detailed section and "How We Work" timeline
+
+### Technical Details
+- All interactive elements have data-testid attributes for testing
+- Service expansion behavior: description always visible, details expand/collapse
+- Default tab set to "Exchanges" category
+- Partner logos use placeholder stock images
+- Smooth transitions and hover states throughout
 
 ## User Preferences
-- Modern, professional Web3 aesthetic with purple/blue gradients
-- Clean, minimalist design with generous whitespace
-- Emphasis on trust, transparency, and measurable results
-- Focus on visual excellence and professional polish
+- Design structure inspired by Markchain.io's clean, professional aesthetic
+- Content must be 100% Magnor-specific (not borrowed from examples)
+- Emphasis on proven results, trust, and measurable outcomes
+- Minimalist approach with generous whitespace
+- Purple/blue Web3 color scheme maintained
 
 ## Development Guidelines
-- Follow design_guidelines.md religiously for all UI implementations
-- Use shadcn components instead of custom styled elements
+- Follow design_guidelines.md for all UI implementations
+- Use shadcn components exclusively (Tabs, Card, Button, Badge)
 - Never add manual hover colors to Button components
-- Maintain proper typography hierarchy (Space Grotesk for headers, Inter for body)
+- Maintain typography hierarchy (Space Grotesk for headers, Inter for body)
 - All interactive elements must have data-testid attributes
-- Use elevation utilities only on appropriate components (Cards, not Buttons/Badges)
+- Elevation utilities (hover-elevate, active-elevate-2) only on Cards
+- Service accordion: description always visible, details expand/collapse on click
