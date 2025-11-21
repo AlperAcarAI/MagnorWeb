@@ -65,12 +65,21 @@ A professional Web3 marketing agency website for Magnor that uses Markchain.io's
 - Removed section overlays for clean, distinct section boundaries
 - All gradients use similar color palette (purple, blue, orange) for visual harmony
 
-### Dynamic Section Backgrounds
-- Hero: Purple gradient (138,43,226 → 75,0,130 → 147,51,234)
-- Case Studies: Purple-to-Blue gradient (75,0,130 → 30,58,138 → 59,130,246)
-- Services: Blue-Orange-Purple gradient (30,58,138 → 138,43,226 → 255,120,0)
-- Contact: Orange-Purple gradient (255,120,0 → 138,43,226 → 75,0,130)
-- All sections: 15-20s smooth gradient animations with 400% background-size
+### Layered Animation System
+**Global Background (z-index: -2):**
+- Independent of sections, always visible
+- 4 radial gradients (purple, blue, orange, light purple)
+- 25-second flow animation moving ellipses across screen
+- Creates depth and continuous motion
+
+**Section Backgrounds (z-index: -1):**
+- Each section has animated gradient overlay using ::before pseudo-element
+- Two simultaneous animations:
+  - `sectionShift`: 18s gradient position animation
+  - `sectionPulse`: 8s opacity/scale breathing effect
+- Staggered delays (-4s, -8s, -12s) for variety
+- Hero: Purple tones, Case Studies: Blue-purple, Services: Blue-orange-purple, Contact: Orange-purple
+- 40-60% opacity for transparency, allows global background to show through
 
 ### Markchain.io Layout Structure (Maintained)
 - Tabbed case study layout with categories
