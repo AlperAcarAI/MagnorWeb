@@ -2,47 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-/* MAGNOR LIGHT MODE - Logo Colors */
+/* MAGNOR DARK MODE - Web3 Theme */
 :root {
-  --button-outline: rgba(0,0,0, .10);
-  --badge-outline: rgba(0,0,0, .05);
-  --opaque-button-border-intensity: -8;
-  --elevate-1: rgba(0,0,0, .03);
-  --elevate-2: rgba(0,0,0, .08);
-  --background: 0 0% 81.6%;
-  --foreground: 0 0% 0%;
-  --border: 0 0% 70%;
-  --card: 0 0% 88%;
-  --card-foreground: 0 0% 0%;
-  --card-border: 0 0% 75%;
-  --sidebar: 0 0% 85%;
-  --sidebar-foreground: 0 0% 0%;
-  --sidebar-border: 0 0% 72%;
-  --sidebar-primary: 0 0% 0%;
-  --sidebar-primary-foreground: 0 0% 81.6%;
-  --sidebar-accent: 0 0% 75%;
-  --sidebar-accent-foreground: 0 0% 0%;
-  --sidebar-ring: 0 0% 0%;
-  --popover: 0 0% 85%;
-  --popover-foreground: 0 0% 0%;
-  --popover-border: 0 0% 70%;
-  --primary: 0 0% 0%;
+  --button-outline: rgba(255,255,255, .15);
+  --badge-outline: rgba(255,255,255, .10);
+  --opaque-button-border-intensity: 12;
+  --elevate-1: rgba(255,255,255, .05);
+  --elevate-2: rgba(255,255,255, .10);
+  --background: 0 0% 4%;
+  --foreground: 0 0% 98%;
+  --border: 0 0% 15%;
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 98%;
+  --card-border: 0 0% 12%;
+  --sidebar: 0 0% 8%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-border: 0 0% 15%;
+  --sidebar-primary: 262 83% 58%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 0 0% 12%;
+  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-ring: 262 83% 58%;
+  --popover: 0 0% 8%;
+  --popover-foreground: 0 0% 98%;
+  --popover-border: 0 0% 15%;
+  --primary: 262 83% 58%;
   --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 75%;
-  --secondary-foreground: 0 0% 0%;
-  --muted: 0 0% 78%;
-  --muted-foreground: 0 0% 30%;
-  --accent: 0 0% 70%;
-  --accent-foreground: 0 0% 0%;
-  --destructive: 0 84% 45%;
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 0 0% 15%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
-  --input: 0 0% 68%;
-  --ring: 0 0% 0%;
-  --chart-1: 0 0% 20%;
-  --chart-2: 0 0% 35%;
-  --chart-3: 0 0% 50%;
-  --chart-4: 0 0% 65%;
-  --chart-5: 0 0% 45%;
+  --input: 0 0% 18%;
+  --ring: 262 83% 58%;
+  --chart-1: 262 70% 68%;
+  --chart-2: 27 87% 67%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 262 83% 58%;
   --font-sans: Inter, system-ui, -apple-system, sans-serif;
   --font-serif: Space Grotesk, sans-serif;
   --font-mono: Menlo, monospace;
@@ -175,9 +175,10 @@
   }
 
   body {
-    @apply font-sans antialiased text-foreground;
+    @apply font-sans antialiased;
     position: relative;
-    background: #d0cdcd;
+    background: #0a0a0f;
+    color: #ffffff;
   }
 
   body::before {
@@ -189,11 +190,11 @@
     height: 100%;
     z-index: -1;
     background: 
-      radial-gradient(circle at 20% 50%, rgba(200, 197, 197, 0.4) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(190, 187, 187, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 40% 20%, rgba(210, 207, 207, 0.3) 0%, transparent 50%);
+      radial-gradient(circle at 20% 30%, rgba(255, 120, 0, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.15) 0%, transparent 50%);
     background-size: 200% 200%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 20s ease infinite;
   }
 
   @keyframes gradientShift {
@@ -205,11 +206,65 @@
     }
   }
 
+  /* Dynamic Section Backgrounds */
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, 
+      rgba(138, 43, 226, 0.1) 0%,
+      rgba(30, 58, 138, 0.1) 50%,
+      rgba(255, 120, 0, 0.1) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+  }
+
+  .section-purple {
+    background: linear-gradient(135deg,
+      rgba(75, 0, 130, 0.2) 0%,
+      rgba(138, 43, 226, 0.2) 50%,
+      rgba(147, 51, 234, 0.2) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 18s ease infinite;
+  }
+
+  .section-blue-orange {
+    background: linear-gradient(135deg,
+      rgba(30, 58, 138, 0.2) 0%,
+      rgba(59, 130, 246, 0.15) 30%,
+      rgba(255, 120, 0, 0.2) 70%,
+      rgba(251, 146, 60, 0.2) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 20s ease infinite;
+  }
+
+  .section-orange {
+    background: linear-gradient(135deg,
+      rgba(255, 120, 0, 0.2) 0%,
+      rgba(251, 146, 60, 0.2) 50%,
+      rgba(234, 88, 12, 0.2) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 16s ease infinite;
+  }
+
   /* Web3 Grid Pattern Background */
   .web3-grid {
     background-image: 
-      linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
     position: relative;
   }
@@ -218,7 +273,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, transparent 0%, #d0cdcd 100%);
+    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(10, 10, 15, 0.8) 100%);
     pointer-events: none;
   }
 
@@ -251,7 +306,7 @@
   .hexagon {
     width: 60px;
     height: 52px;
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(138, 43, 226, 0.2);
     position: relative;
     display: inline-block;
   }
@@ -267,12 +322,12 @@
 
   .hexagon::before {
     bottom: 100%;
-    border-bottom: 26px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 26px solid rgba(138, 43, 226, 0.2);
   }
 
   .hexagon::after {
     top: 100%;
-    border-top: 26px solid rgba(0, 0, 0, 0.05);
+    border-top: 26px solid rgba(138, 43, 226, 0.2);
   }
 
   /* Floating Particles */
@@ -290,11 +345,12 @@
 
   .particle {
     position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(0, 0, 0, 0.1);
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     animation: float 8s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
   }
 
   /* Gradient Border Animation */

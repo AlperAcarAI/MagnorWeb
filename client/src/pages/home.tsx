@@ -171,7 +171,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <section 
-        className="relative py-32 flex items-center justify-center web3-grid overflow-hidden"
+        className="relative py-32 flex items-center justify-center web3-grid hero-gradient overflow-hidden"
         data-testid="section-hero"
       >
         {/* Floating Particles */}
@@ -226,7 +226,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-background" data-testid="section-case-studies">
+      <section className="py-20 section-purple" data-testid="section-case-studies">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4" data-testid="text-case-studies-title">
             Trusted by Leading Web3 Projects
@@ -318,7 +318,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-muted/30" data-testid="section-services">
+      <section className="py-20 section-blue-orange" data-testid="section-services">
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4" data-testid="text-services-title">
             Comprehensive Web3 Marketing Solutions
@@ -384,7 +384,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-background" data-testid="section-contact">
+      <section className="py-20 section-orange" data-testid="section-contact">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-8" data-testid="text-contact-title">
             Ready to elevate your Web3 project?
@@ -429,7 +429,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="py-8 bg-background border-t">
+      <footer className="py-8 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <p className="text-muted-foreground" data-testid="text-footer">
             © 2024 Magnor Agency. Empowering Web3 Projects.
