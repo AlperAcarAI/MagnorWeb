@@ -179,8 +179,10 @@
     position: relative;
     background: #0a0a0f;
     color: #ffffff;
+    overflow-x: hidden;
   }
 
+  /* Global Animated Background - Independent of Sections */
   body::before {
     content: '';
     position: fixed;
@@ -188,75 +190,110 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -2;
     background: 
-      radial-gradient(circle at 20% 30%, rgba(255, 120, 0, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.15) 0%, transparent 50%);
-    background-size: 200% 200%;
-    animation: gradientShift 20s ease infinite;
+      radial-gradient(ellipse at 20% 20%, rgba(138, 43, 226, 0.2) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 50%, rgba(30, 58, 138, 0.25) 0%, transparent 40%),
+      radial-gradient(ellipse at 40% 80%, rgba(255, 120, 0, 0.2) 0%, transparent 40%),
+      radial-gradient(ellipse at 70% 30%, rgba(147, 51, 234, 0.15) 0%, transparent 35%);
+    background-size: 300% 300%;
+    animation: globalGradientFlow 25s ease infinite;
   }
 
-  @keyframes gradientShift {
+  @keyframes globalGradientFlow {
+    0%, 100% {
+      background-position: 0% 0%, 100% 50%, 50% 100%, 80% 20%;
+    }
+    25% {
+      background-position: 50% 20%, 80% 80%, 20% 60%, 60% 40%;
+    }
+    50% {
+      background-position: 100% 50%, 30% 100%, 70% 30%, 40% 70%;
+    }
+    75% {
+      background-position: 30% 70%, 60% 40%, 90% 80%, 20% 50%;
+    }
+  }
+
+  /* Dynamic Section Backgrounds with Animations */
+  @keyframes sectionPulse {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes sectionShift {
     0%, 100% {
       background-position: 0% 50%;
     }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
-  /* Dynamic Section Backgrounds */
-  @keyframes gradientMove {
-    0% {
-      background-position: 0% 50%;
+    25% {
+      background-position: 50% 0%;
     }
     50% {
       background-position: 100% 50%;
     }
-    100% {
-      background-position: 0% 50%;
+    75% {
+      background-position: 50% 100%;
     }
   }
 
-  .hero-gradient {
+  section {
+    position: relative;
+    isolation: isolate;
+  }
+
+  section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.5;
+    background-size: 400% 400%;
+    animation: sectionShift 18s ease-in-out infinite, sectionPulse 8s ease-in-out infinite;
+  }
+
+  .hero-gradient::before {
     background: linear-gradient(135deg, 
-      rgba(138, 43, 226, 0.15) 0%,
-      rgba(75, 0, 130, 0.12) 50%,
-      rgba(147, 51, 234, 0.15) 100%
+      rgba(138, 43, 226, 0.3) 0%,
+      rgba(75, 0, 130, 0.2) 30%,
+      rgba(147, 51, 234, 0.25) 60%,
+      rgba(138, 43, 226, 0.3) 100%
     );
-    background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
   }
 
-  .section-purple {
+  .section-purple::before {
     background: linear-gradient(135deg,
-      rgba(75, 0, 130, 0.12) 0%,
-      rgba(30, 58, 138, 0.15) 50%,
-      rgba(59, 130, 246, 0.12) 100%
+      rgba(75, 0, 130, 0.25) 0%,
+      rgba(30, 58, 138, 0.3) 30%,
+      rgba(59, 130, 246, 0.2) 60%,
+      rgba(75, 0, 130, 0.25) 100%
     );
-    background-size: 400% 400%;
-    animation: gradientMove 18s ease infinite;
+    animation-delay: -4s;
   }
 
-  .section-blue-orange {
+  .section-blue-orange::before {
     background: linear-gradient(135deg,
-      rgba(30, 58, 138, 0.15) 0%,
-      rgba(138, 43, 226, 0.12) 50%,
-      rgba(255, 120, 0, 0.15) 100%
+      rgba(30, 58, 138, 0.3) 0%,
+      rgba(138, 43, 226, 0.2) 30%,
+      rgba(255, 120, 0, 0.25) 60%,
+      rgba(30, 58, 138, 0.3) 100%
     );
-    background-size: 400% 400%;
-    animation: gradientMove 20s ease infinite;
+    animation-delay: -8s;
   }
 
-  .section-orange {
+  .section-orange::before {
     background: linear-gradient(135deg,
-      rgba(255, 120, 0, 0.15) 0%,
-      rgba(138, 43, 226, 0.12) 50%,
-      rgba(75, 0, 130, 0.15) 100%
+      rgba(255, 120, 0, 0.3) 0%,
+      rgba(138, 43, 226, 0.2) 30%,
+      rgba(75, 0, 130, 0.25) 60%,
+      rgba(255, 120, 0, 0.3) 100%
     );
-    background-size: 400% 400%;
-    animation: gradientMove 16s ease infinite;
+    animation-delay: -12s;
   }
 
 
