@@ -200,7 +200,7 @@ export default function Home() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-3" data-testid="logo">
-              <img src={magnorLogo} alt="Magnor Logo" className="h-8" />
+              <img src={magnorLogo} alt="Magnor Logo" className="h-10 mix-blend-screen" />
             </div>
 
             {/* Navigation */}
@@ -563,7 +563,7 @@ export default function Home() {
             {/* Company Info */}
             <div data-testid="footer-company">
               <div className="flex items-center gap-3 mb-4">
-                <img src={magnorLogo} alt="Magnor Logo" className="h-7" />
+                <img src={magnorLogo} alt="Magnor Logo" className="h-8 mix-blend-screen" />
               </div>
               <p className="text-sm text-muted-foreground mb-4">
                 Empowering Web3 Projects with Trust & Strategy since 2020
