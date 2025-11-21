@@ -72,13 +72,15 @@ A professional Web3 marketing agency website for Magnor that uses Markchain.io's
 - 25-second flow animation moving ellipses across screen
 - Creates depth and continuous motion
 
-**Geometric Shapes Layer (z-index: -1):**
-- Animated geometric patterns using body::after
-- Rotating diamond/square patterns (80px grid)
-- Strategic circular elements at key positions
-- Diagonal line pattern for subtle texture
-- 30-second rotation + translation animation
-- Combines translate and rotate for floating effect
+**Animated Stars Layer (z-index: -1):**
+- Space-themed starfield using body::after pseudo-element
+- 8 large white stars with varying opacity (0.7-0.9)
+- 4 medium colored stars with glow effects (purple, orange, blue tones)
+- 6 small scattered stars for depth
+- Two simultaneous animations:
+  - `starsFloat`: 40-second slow drift animation
+  - `starsTwinkle`: 3-second opacity pulse for twinkling effect
+- Creates cosmic Web3 atmosphere
 
 ### Markchain.io Layout Structure (Maintained)
 - Tabbed case study layout with categories

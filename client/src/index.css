@@ -242,7 +242,7 @@
     }
   }
 
-  /* Animated Geometric Shapes Background */
+  /* Animated Space/Stars Background */
   body::after {
     content: '';
     position: fixed;
@@ -253,53 +253,52 @@
     z-index: -1;
     pointer-events: none;
     background-image:
-      /* Rotating squares */
-      linear-gradient(45deg, rgba(138, 43, 226, 0.15) 25%, transparent 25%),
-      linear-gradient(-45deg, rgba(138, 43, 226, 0.15) 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, rgba(138, 43, 226, 0.15) 75%),
-      linear-gradient(-45deg, transparent 75%, rgba(138, 43, 226, 0.15) 75%),
-      /* Circles */
-      radial-gradient(circle at 15% 15%, rgba(255, 120, 0, 0.1) 0%, transparent 3%),
-      radial-gradient(circle at 85% 25%, rgba(30, 58, 138, 0.12) 0%, transparent 4%),
-      radial-gradient(circle at 45% 85%, rgba(147, 51, 234, 0.1) 0%, transparent 3.5%),
-      radial-gradient(circle at 75% 75%, rgba(255, 120, 0, 0.08) 0%, transparent 2.5%),
-      /* Diagonal lines */
-      repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 100px,
-        rgba(138, 43, 226, 0.03) 100px,
-        rgba(138, 43, 226, 0.03) 102px
-      );
-    background-size:
-      80px 80px,
-      80px 80px,
-      80px 80px,
-      80px 80px,
-      100% 100%,
-      100% 100%,
-      100% 100%,
-      100% 100%,
-      100% 100%;
-    background-position: 0 0, 0 0, 40px 40px, 40px 40px, 0 0, 0 0, 0 0, 0 0, 0 0;
-    animation: geometricFloat 30s linear infinite;
+      /* Large stars */
+      radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 1px),
+      radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.9) 0%, transparent 1.5px),
+      radial-gradient(circle at 30% 60%, rgba(255, 255, 255, 0.7) 0%, transparent 1px),
+      radial-gradient(circle at 90% 70%, rgba(255, 255, 255, 0.85) 0%, transparent 1.5px),
+      radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.75) 0%, transparent 1px),
+      radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.8) 0%, transparent 1.5px),
+      radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.7) 0%, transparent 1px),
+      radial-gradient(circle at 40% 90%, rgba(255, 255, 255, 0.85) 0%, transparent 1.5px),
+      /* Medium stars with glow */
+      radial-gradient(circle at 15% 35%, rgba(138, 43, 226, 0.6) 0%, transparent 2px),
+      radial-gradient(circle at 65% 15%, rgba(255, 120, 0, 0.5) 0%, transparent 2px),
+      radial-gradient(circle at 85% 85%, rgba(30, 58, 138, 0.6) 0%, transparent 2px),
+      radial-gradient(circle at 35% 45%, rgba(147, 51, 234, 0.5) 0%, transparent 2px),
+      /* Small scattered stars */
+      radial-gradient(circle at 25% 15%, rgba(255, 255, 255, 0.4) 0%, transparent 0.5px),
+      radial-gradient(circle at 55% 25%, rgba(255, 255, 255, 0.45) 0%, transparent 0.5px),
+      radial-gradient(circle at 75% 45%, rgba(255, 255, 255, 0.4) 0%, transparent 0.5px),
+      radial-gradient(circle at 45% 65%, rgba(255, 255, 255, 0.5) 0%, transparent 0.5px),
+      radial-gradient(circle at 95% 55%, rgba(255, 255, 255, 0.4) 0%, transparent 0.5px),
+      radial-gradient(circle at 60% 75%, rgba(255, 255, 255, 0.45) 0%, transparent 0.5px);
+    background-size: 100% 100%;
+    animation: starsFloat 40s ease-in-out infinite, starsTwinkle 3s ease-in-out infinite;
   }
 
-  @keyframes geometricFloat {
-    0% {
-      transform: translate(0, 0) rotate(0deg);
+  @keyframes starsFloat {
+    0%, 100% {
+      transform: translate(0, 0);
     }
     25% {
-      transform: translate(20px, -20px) rotate(90deg);
+      transform: translate(10px, -15px);
     }
     50% {
-      transform: translate(0, -40px) rotate(180deg);
+      transform: translate(-5px, -30px);
     }
     75% {
-      transform: translate(-20px, -20px) rotate(270deg);
+      transform: translate(-15px, -15px);
     }
-    100% {
-      transform: translate(0, 0) rotate(360deg);
+  }
+
+  @keyframes starsTwinkle {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
     }
   }
 
