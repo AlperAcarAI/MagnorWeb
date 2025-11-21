@@ -19,11 +19,27 @@ import {
   Presentation,
   ChevronDown,
   ChevronUp,
+  Sparkles,
 } from "lucide-react";
+import { SiTelegram, SiX, SiLinkedin } from "react-icons/si";
 import logoPlaceholder from "@assets/stock_images/simple_minimal_compa_419400b5.jpg";
 
 export default function Home() {
   const [expandedService, setExpandedService] = useState<number | null>(null);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.querySelector(`[data-testid="section-${sectionId}"]`);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   const caseStudyCategories = [
     {
@@ -177,8 +193,60 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-lg bg-background/80" data-testid="header">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex items-center gap-2" data-testid="logo">
+              <Sparkles className="w-6 h-6 text-primary" />
+              <span className="text-xl font-bold">MAGNOR</span>
+            </div>
+
+            {/* Navigation */}
+            <nav className="hidden md:flex items-center gap-6" data-testid="nav-menu">
+              <button
+                onClick={() => scrollToSection("hero")}
+                className="text-sm hover:text-primary transition-colors"
+                data-testid="nav-home"
+              >
+                Home
+              </button>
+              <button
+                onClick={() => scrollToSection("case-studies")}
+                className="text-sm hover:text-primary transition-colors"
+                data-testid="nav-case-studies"
+              >
+                Case Studies
+              </button>
+              <button
+                onClick={() => scrollToSection("services")}
+                className="text-sm hover:text-primary transition-colors"
+                data-testid="nav-services"
+              >
+                Services
+              </button>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="text-sm hover:text-primary transition-colors"
+                data-testid="nav-contact"
+              >
+                Contact
+              </button>
+            </nav>
+
+            {/* CTA */}
+            <Button size="sm" asChild data-testid="button-header-cta">
+              <a href="https://t.me/emirweb3" target="_blank" rel="noopener noreferrer">
+                Get Started
+              </a>
+            </Button>
+          </div>
+        </div>
+      </header>
+
       <section
-        className="relative py-32 flex items-center justify-center web3-grid hero-gradient overflow-hidden"
+        className="relative py-32 mt-16 flex items-center justify-center web3-grid hero-gradient overflow-hidden"
         data-testid="section-hero"
       >
         {/* Floating Particles */}
@@ -520,11 +588,127 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="py-8 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-muted-foreground" data-testid="text-footer">
-            © 2024 Magnor Agency. Empowering Web3 Projects.
-          </p>
+      <footer className="py-16 border-t border-white/10 bg-card/30" data-testid="footer">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            {/* Company Info */}
+            <div data-testid="footer-company">
+              <div className="flex items-center gap-2 mb-4">
+                <Sparkles className="w-5 h-5 text-primary" />
+                <span className="text-lg font-bold">MAGNOR</span>
+              </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                Empowering Web3 Projects with Trust & Strategy since 2020
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Based in Dubai
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div data-testid="footer-links">
+              <h4 className="font-semibold mb-4">Quick Links</h4>
+              <div className="space-y-2">
+                <button
+                  onClick={() => scrollToSection("hero")}
+                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                  data-testid="footer-link-home"
+                >
+                  Home
+                </button>
+                <button
+                  onClick={() => scrollToSection("case-studies")}
+                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                  data-testid="footer-link-case-studies"
+                >
+                  Case Studies
+                </button>
+                <button
+                  onClick={() => scrollToSection("services")}
+                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                  data-testid="footer-link-services"
+                >
+                  Services
+                </button>
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div data-testid="footer-contact">
+              <h4 className="font-semibold mb-4">Contact</h4>
+              <div className="space-y-2">
+                <a
+                  href="mailto:info@magnor.agency"
+                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                  data-testid="footer-email"
+                >
+                  info@magnor.agency
+                </a>
+                <a
+                  href="https://www.magnor.agency"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                  data-testid="footer-website"
+                >
+                  www.magnor.agency
+                </a>
+                <a
+                  href="https://t.me/emirweb3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                  data-testid="footer-telegram-link"
+                >
+                  @emirweb3
+                </a>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div data-testid="footer-social">
+              <h4 className="font-semibold mb-4">Follow Us</h4>
+              <div className="flex gap-4">
+                <a
+                  href="https://t.me/emirweb3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  data-testid="social-telegram"
+                  aria-label="Telegram"
+                >
+                  <SiTelegram className="w-5 h-5" />
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  data-testid="social-twitter"
+                  aria-label="X (Twitter)"
+                >
+                  <SiX className="w-5 h-5" />
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  data-testid="social-linkedin"
+                  aria-label="LinkedIn"
+                >
+                  <SiLinkedin className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="pt-8 border-t border-white/10 text-center">
+            <p className="text-sm text-muted-foreground" data-testid="text-copyright">
+              © 2024 Magnor Agency. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
