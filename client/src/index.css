@@ -260,7 +260,7 @@
     animation: gradientMove 16s ease infinite;
   }
 
-  /* Smooth Section Transitions */
+  /* Smooth Section Transitions - Fade to Black */
   section {
     position: relative;
     transition: background 0.8s ease;
@@ -269,11 +269,11 @@
   section::before {
     content: '';
     position: absolute;
-    top: -80px;
+    top: -100px;
     left: 0;
     right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, rgba(10, 10, 15, 0.3), transparent);
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(10, 10, 15, 1), rgba(10, 10, 15, 0) 80%);
     pointer-events: none;
     z-index: 1;
   }
@@ -281,11 +281,11 @@
   section::after {
     content: '';
     position: absolute;
-    bottom: -80px;
+    bottom: -100px;
     left: 0;
     right: 0;
-    height: 80px;
-    background: linear-gradient(to top, rgba(10, 10, 15, 0.3), transparent);
+    height: 100px;
+    background: linear-gradient(to top, rgba(10, 10, 15, 1), rgba(10, 10, 15, 0) 80%);
     pointer-events: none;
     z-index: 1;
   }
@@ -299,10 +299,10 @@
     display: none;
   }
 
-  /* Add overlap margin for smooth blending */
+  /* Seamless overlap for blending */
   section + section {
-    margin-top: -40px;
-    padding-top: calc(80px + 2rem);
+    margin-top: -100px;
+    padding-top: calc(100px + 2rem);
   }
 
   /* Web3 Grid Pattern Background */
