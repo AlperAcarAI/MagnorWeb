@@ -56,21 +56,27 @@ A professional Web3 marketing agency website for Magnor that uses Markchain.io's
    - Responsive grids that adapt across screen sizes
    - Tab navigation wraps on mobile devices
 
-## Recent Changes (Latest Session - November 20, 2025)
+## Recent Changes (Latest Session - November 21, 2025)
 
-### Content Migration to Magnor Brand
-- Replaced Markchain.io example content with Magnor's actual partners and services
-- Updated all company information (founded 2020, Dubai location)
-- Reorganized case studies into relevant categories for Magnor's portfolio
-- Restored all 6 original Magnor services with their unique value propositions
-- Updated hero messaging to reflect Magnor's brand voice
+### Magnor Brand Color Implementation
+- Applied Magnor logo color scheme: #d0cdcd background (light gray/beige)
+- Changed all text and logo colors to black for brand consistency
+- Switched from dark theme to light theme matching logo aesthetic
+- Updated all accent colors to black-based palette
 
-### Design Pattern Implementation
-- Implemented Markchain.io's tabbed case study layout
-- Created accordion-style expandable services (following Markchain pattern)
-- Simplified hero section (minimal, no background image)
-- Streamlined contact section to button-based interface
-- Removed "Token Value Creation" detailed section and "How We Work" timeline
+### Dynamic Background Animation
+- Added subtle animated gradient background using CSS keyframes
+- Three radial gradients in gray tones (opacity 0.3-0.4)
+- 15-second smooth animation cycle for gentle movement
+- Fixed positioning maintains animation during scroll
+- Non-jarring, professional aesthetic that doesn't distract from content
+
+### Markchain.io Layout Structure (Maintained)
+- Tabbed case study layout with categories
+- Accordion-style expandable services
+- Minimal hero section
+- Button-based contact interface
+- 100% Magnor content (partners, services, company info)
 
 ### Technical Details
 - All interactive elements have data-testid attributes for testing
@@ -78,6 +84,7 @@ A professional Web3 marketing agency website for Magnor that uses Markchain.io's
 - Default tab set to "Exchanges" category
 - Partner logos use placeholder stock images
 - Smooth transitions and hover states throughout
+- CSS animation runs on body::before pseudo-element for performance
 
 ## User Preferences
 - Design structure inspired by Markchain.io's clean, professional aesthetic

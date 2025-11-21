@@ -169,7 +169,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <section 
         className="relative py-32 flex items-center justify-center"
         data-testid="section-hero"
