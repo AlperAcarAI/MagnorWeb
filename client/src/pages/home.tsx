@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { SiTelegram, SiX, SiLinkedin } from "react-icons/si";
 import logoPlaceholder from "@assets/stock_images/simple_minimal_compa_419400b5.jpg";
+import magnorLogo from "@assets/Logo2.svg";
 
 export default function Home() {
   const [expandedService, setExpandedService] = useState<number | null>(null);
@@ -198,9 +199,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center gap-2" data-testid="logo">
-              <Sparkles className="w-6 h-6 text-primary" />
-              <span className="text-xl font-bold">MAGNOR</span>
+            <div className="flex items-center gap-3" data-testid="logo">
+              <img src={magnorLogo} alt="Magnor Logo" className="h-8" />
             </div>
 
             {/* Navigation */}
@@ -562,9 +562,8 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             {/* Company Info */}
             <div data-testid="footer-company">
-              <div className="flex items-center gap-2 mb-4">
-                <Sparkles className="w-5 h-5 text-primary" />
-                <span className="text-lg font-bold">MAGNOR</span>
+              <div className="flex items-center gap-3 mb-4">
+                <img src={magnorLogo} alt="Magnor Logo" className="h-7" />
               </div>
               <p className="text-sm text-muted-foreground mb-4">
                 Empowering Web3 Projects with Trust & Strategy since 2020
