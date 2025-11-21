@@ -73,14 +73,19 @@ A professional Web3 marketing agency website for Magnor that uses Markchain.io's
 - Creates depth and continuous motion
 
 **Animated Stars Layer (z-index: -1):**
-- Space-themed starfield using body::after pseudo-element
-- 8 large white stars with varying opacity (0.7-0.9)
-- 4 medium colored stars with glow effects (purple, orange, blue tones)
-- 6 small scattered stars for depth
+- Dense galaxy/space theme using body::after pseudo-element
+- **Galaxy/Nebula elements:**
+  - 3 large elliptical nebula clouds (purple, blue, light purple)
+  - 1 diagonal Milky Way band across screen
+- **Star layers (50+ total stars):**
+  - 12 large bright white stars (varying sizes 1.5-2px)
+  - 6 medium colored stars with glow (purple, orange, blue - 2.5-3px)
+  - 26 small white stars in dense patterns (0.5px)
+  - 10 tiny scattered stars for extra depth (0.3px)
 - Two simultaneous animations:
   - `starsFloat`: 40-second slow drift animation
   - `starsTwinkle`: 3-second opacity pulse for twinkling effect
-- Creates cosmic Web3 atmosphere
+- Creates immersive cosmic Web3 atmosphere
 
 ### Markchain.io Layout Structure (Maintained)
 - Tabbed case study layout with categories
