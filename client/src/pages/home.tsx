@@ -23,21 +23,24 @@ import {
 } from "lucide-react";
 import { SiTelegram, SiX, SiLinkedin } from "react-icons/si";
 import logoPlaceholder from "@assets/stock_images/simple_minimal_compa_419400b5.jpg";
-import magnorLogo from "@assets/Logo2.svg";
+import magnorLogo from "@shared/Logo1.svg";
 
 export default function Home() {
   const [expandedService, setExpandedService] = useState<number | null>(null);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.querySelector(`[data-testid="section-${sectionId}"]`);
+    const element = document.querySelector(
+      `[data-testid="section-${sectionId}"]`,
+    );
     if (element) {
       const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   };
@@ -195,16 +198,29 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-lg bg-background/80" data-testid="header">
+      <header
+        className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-lg bg-background/30 "
+        data-testid="header"
+      >
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-3" data-testid="logo">
-              <img src={magnorLogo} alt="Magnor Logo" className="h-10 mix-blend-screen" />
+              <img 
+                src={magnorLogo} 
+                alt="Magnor Logo" 
+                className="h-10" 
+                style={{ 
+                  filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 24px rgba(59, 130, 246, 0.4)) brightness(0) invert(1)' 
+                }} 
+              />
             </div>
 
             {/* Navigation */}
-            <nav className="hidden md:flex items-center gap-6" data-testid="nav-menu">
+            <nav
+              className="hidden md:flex items-center gap-6"
+              data-testid="nav-menu"
+            >
               <button
                 onClick={() => scrollToSection("hero")}
                 className="text-sm hover:text-primary transition-colors"
@@ -237,7 +253,11 @@ export default function Home() {
 
             {/* CTA */}
             <Button size="sm" asChild data-testid="button-header-cta">
-              <a href="https://t.me/emirweb3" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://t.me/emirweb3"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Get Started
               </a>
             </Button>
@@ -557,20 +577,28 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="py-16 border-t border-white/10 bg-card/30" data-testid="footer">
+      <footer
+        className="py-16 border-t border-white/10 bg-card/30"
+        data-testid="footer"
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             {/* Company Info */}
             <div data-testid="footer-company">
               <div className="flex items-center gap-3 mb-4">
-                <img src={magnorLogo} alt="Magnor Logo" className="h-8 mix-blend-screen" />
+                <img 
+                  src={magnorLogo} 
+                  alt="Magnor Logo" 
+                  className="h-8" 
+                  style={{ 
+                    filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 24px rgba(59, 130, 246, 0.4)) brightness(0) invert(1)' 
+                  }} 
+                />
               </div>
               <p className="text-sm text-muted-foreground mb-4">
                 Empowering Web3 Projects with Trust & Strategy since 2020
               </p>
-              <p className="text-sm text-muted-foreground">
-                Based in Dubai
-              </p>
+              <p className="text-sm text-muted-foreground">Based in Dubai</p>
             </div>
 
             {/* Quick Links */}
@@ -673,7 +701,10 @@ export default function Home() {
 
           {/* Copyright */}
           <div className="pt-8 border-t border-white/10 text-center">
-            <p className="text-sm text-muted-foreground" data-testid="text-copyright">
+            <p
+              className="text-sm text-muted-foreground"
+              data-testid="text-copyright"
+            >
               © 2024 Magnor Agency. All rights reserved.
             </p>
           </div>
