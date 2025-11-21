@@ -330,6 +330,15 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Shooting Stars Divider */}
+      <div className="shooting-stars-divider" data-testid="divider-1">
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+      </div>
+
       <section
         className="py-20 section-purple"
         data-testid="section-case-studies"
@@ -454,6 +463,15 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Shooting Stars Divider */}
+      <div className="shooting-stars-divider" data-testid="divider-2">
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+      </div>
+
       <section
         className="py-20 section-blue-orange"
         data-testid="section-services"
@@ -535,6 +553,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Shooting Stars Divider */}
+      <div className="shooting-stars-divider" data-testid="divider-3">
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+        <div className="shooting-star"></div>
+      </div>
 
       <section className="py-20 section-orange" data-testid="section-contact">
         <div className="max-w-4xl mx-auto px-6 text-center">
