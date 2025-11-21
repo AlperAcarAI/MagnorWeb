@@ -72,14 +72,13 @@ A professional Web3 marketing agency website for Magnor that uses Markchain.io's
 - 25-second flow animation moving ellipses across screen
 - Creates depth and continuous motion
 
-**Section Backgrounds (z-index: -1):**
-- Each section has animated gradient overlay using ::before pseudo-element
-- Two simultaneous animations:
-  - `sectionShift`: 18s gradient position animation
-  - `sectionPulse`: 8s opacity/scale breathing effect
-- Staggered delays (-4s, -8s, -12s) for variety
-- Hero: Purple tones, Case Studies: Blue-purple, Services: Blue-orange-purple, Contact: Orange-purple
-- 40-60% opacity for transparency, allows global background to show through
+**Geometric Shapes Layer (z-index: -1):**
+- Animated geometric patterns using body::after
+- Rotating diamond/square patterns (80px grid)
+- Strategic circular elements at key positions
+- Diagonal line pattern for subtle texture
+- 30-second rotation + translation animation
+- Combines translate and rotate for floating effect
 
 ### Markchain.io Layout Structure (Maintained)
 - Tabbed case study layout with categories
