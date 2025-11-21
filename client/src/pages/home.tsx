@@ -171,10 +171,23 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <section 
-        className="relative py-32 flex items-center justify-center"
+        className="relative py-32 flex items-center justify-center web3-grid overflow-hidden"
         data-testid="section-hero"
       >
-        <div className="max-w-7xl mx-auto px-6 text-center">
+        {/* Floating Particles */}
+        <div className="particle" style={{ top: '10%', left: '10%', animationDelay: '0s' }}></div>
+        <div className="particle" style={{ top: '20%', left: '80%', animationDelay: '2s' }}></div>
+        <div className="particle" style={{ top: '60%', left: '15%', animationDelay: '4s' }}></div>
+        <div className="particle" style={{ top: '80%', left: '70%', animationDelay: '1s' }}></div>
+        <div className="particle" style={{ top: '40%', left: '90%', animationDelay: '3s' }}></div>
+        <div className="particle" style={{ top: '70%', left: '30%', animationDelay: '5s' }}></div>
+
+        {/* Hexagon Decorations */}
+        <div className="absolute top-20 left-10 hexagon opacity-20 hidden lg:block"></div>
+        <div className="absolute bottom-20 right-10 hexagon opacity-20 hidden lg:block"></div>
+        <div className="absolute top-40 right-20 hexagon opacity-10 hidden lg:block"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
           <div className="mb-8">
             <Badge variant="outline" className="mb-4" data-testid="badge-founded">
               Founded in 2020
@@ -241,7 +254,7 @@ export default function Home() {
                   {category.clients.map((client, idx) => (
                     <Card 
                       key={idx} 
-                      className="p-8 hover-elevate"
+                      className="p-8 hover-elevate neon-glow"
                       data-testid={`card-client-${idx}`}
                     >
                       <div className="mb-6 flex items-center justify-center">
@@ -318,7 +331,7 @@ export default function Home() {
             {services.map((service, index) => (
               <Card 
                 key={index}
-                className="overflow-hidden"
+                className="overflow-hidden gradient-border"
                 data-testid={`card-service-${index}`}
               >
                 <button
