@@ -203,7 +203,7 @@ export default function Home() {
             Empowering Web3 Projects with Trust & Strategy
           </h1>
           <p className="text-xl text-muted-foreground mb-12" data-testid="text-tagline">
-            — Your Growth Partner in Web3
+            — Ceranity in Chaos
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
