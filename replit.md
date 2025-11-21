@@ -58,18 +58,19 @@ A professional Web3 marketing agency website for Magnor that uses Markchain.io's
 
 ## Recent Changes (Latest Session - November 21, 2025)
 
-### Magnor Brand Color Implementation
-- Applied Magnor logo color scheme: #d0cdcd background (light gray/beige)
-- Changed all text and logo colors to black for brand consistency
-- Switched from dark theme to light theme matching logo aesthetic
-- Updated all accent colors to black-based palette
+### Dark Web3 Theme with Dynamic Gradients
+- Converted to dark theme: #0a0a0f background with white text (#ffffff)
+- Added vibrant gradient animations with purple, blue, and orange tones
+- Each section has unified, harmonious gradient scheme for smooth transitions
+- Removed section overlays for clean, distinct section boundaries
+- All gradients use similar color palette (purple, blue, orange) for visual harmony
 
-### Dynamic Background Animation
-- Added subtle animated gradient background using CSS keyframes
-- Three radial gradients in gray tones (opacity 0.3-0.4)
-- 15-second smooth animation cycle for gentle movement
-- Fixed positioning maintains animation during scroll
-- Non-jarring, professional aesthetic that doesn't distract from content
+### Dynamic Section Backgrounds
+- Hero: Purple gradient (138,43,226 → 75,0,130 → 147,51,234)
+- Case Studies: Purple-to-Blue gradient (75,0,130 → 30,58,138 → 59,130,246)
+- Services: Blue-Orange-Purple gradient (30,58,138 → 138,43,226 → 255,120,0)
+- Contact: Orange-Purple gradient (255,120,0 → 138,43,226 → 75,0,130)
+- All sections: 15-20s smooth gradient animations with 400% background-size
 
 ### Markchain.io Layout Structure (Maintained)
 - Tabbed case study layout with categories
