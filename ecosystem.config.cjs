@@ -1,0 +1,22 @@
+{
+    "apps": [{
+        "name": "magnorweb",
+        "script": "dist/index.js",
+        "cwd": "/var/www/magnorweb",
+        "instances": 1,
+        "autorestart": true,
+        "watch": false,
+        "max_memory_restart": "1G",
+        "env": {
+            "NODE_ENV": "production",
+            "PORT": "5001"
+        },
+        "env_production": {
+            "NODE_ENV": "production",
+            "PORT": "5001"
+        },
+        "error_file": "/var/log/pm2/magnorweb-error.log",
+        "out_file": "/var/log/pm2/magnorweb-out.log",
+        "log_date_format": "YYYY-MM-DD HH:mm:ss Z"
+    }]
+}
