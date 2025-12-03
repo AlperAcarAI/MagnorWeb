@@ -1,36 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Megaphone,
   TrendingUp,
   Newspaper,
-  Building2,
   Users,
   ArrowUpRight,
-  Mail,
-  Globe,
-  Send,
+  Building2,
   Network,
-  Mic,
-  Edit,
-  Presentation,
-  ChevronDown,
-  ChevronUp,
-  Sparkles,
 } from "lucide-react";
-import { SiTelegram, SiX, SiLinkedin } from "react-icons/si";
-import logoPlaceholder from "@assets/stock_images/simple_minimal_compa_419400b5.jpg";
 import magnorLogo from "@shared/Logo1.svg";
+import type { Brand } from "@shared/schema";
 
 export default function Home() {
-  const [expandedService, setExpandedService] = useState<number | null>(null);
+  const [clients, setClients] = useState<Brand[]>([]);
+
+  useEffect(() => {
+    fetchBrands();
+  }, []);
+
+  const fetchBrands = async () => {
+    try {
+      const response = await fetch("/api/brands");
+      const data = await response.json();
+      setClients(data);
+    } catch (error) {
+      console.error("Failed to fetch brands:", error);
+      // Fallback to default brands if API fails
+      setClients([
+        { id: "1", name: "Markchain", color: "bg-purple-500", logo: null, createdAt: null },
+        { id: "2", name: "Disence", color: "bg-blue-500", logo: null, createdAt: null },
+        { id: "3", name: "Artrade", color: "bg-green-500", logo: null, createdAt: null },
+      ]);
+    }
+  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.querySelector(
-      `[data-testid="section-${sectionId}"]`,
+      `[data-section="${sectionId}"]`,
     );
     if (element) {
       const headerOffset = 80;
@@ -45,668 +54,394 @@ export default function Home() {
     }
   };
 
-  const caseStudyCategories = [
-    {
-      id: "exchanges",
-      label: "Exchanges",
-      clients: [
-        {
-          name: "Markchain",
-          logo: logoPlaceholder,
-          description:
-            "Complete Web3 marketing strategy and KOL network management",
-          metrics: [
-            { value: "50+", label: "KOLs managed" },
-            { value: "15M+", label: "Total reach" },
-            { value: "8X", label: "ROI achieved" },
-          ],
-        },
-        {
-          name: "Disence",
-          logo: logoPlaceholder,
-          description: "Token launch marketing and community growth",
-          metrics: [
-            { value: "$2.5M", label: "Raised in presale" },
-            { value: "25K", label: "Community members" },
-            { value: "12X", label: "Token performance" },
-          ],
-        },
-      ],
-      otherPartners: ["Cmedia", "Concordium", "Fatty"],
-    },
-    {
-      id: "defi",
-      label: "DeFi Projects",
-      clients: [
-        {
-          name: "Artrade",
-          logo: logoPlaceholder,
-          description: "NFT marketplace launch and growth marketing",
-          metrics: [
-            { value: "$5M", label: "Trading volume" },
-            { value: "10K+", label: "Active users" },
-            { value: "150+", label: "Media mentions" },
-          ],
-        },
-        {
-          name: "LimeWire",
-          logo: logoPlaceholder,
-          description: "Brand revival and Web3 community building",
-          metrics: [
-            { value: "100K+", label: "Community growth" },
-            { value: "5X", label: "Engagement increase" },
-            { value: "50+", label: "Strategic partnerships" },
-          ],
-        },
-      ],
-      otherPartners: ["Lingo", "My Lovely Planet", "Opulous"],
-    },
-    {
-      id: "gaming",
-      label: "Gaming & Metaverse",
-      clients: [
-        {
-          name: "SpaceCatch",
-          logo: logoPlaceholder,
-          description: "Mobile Web3 game launch and user acquisition",
-          metrics: [
-            { value: "200K+", label: "Downloads" },
-            { value: "40K", label: "Daily active users" },
-            { value: "20X", label: "Growth rate" },
-          ],
-        },
-      ],
-      otherPartners: ["Partner", "Partner", "Partner"],
-    },
-  ];
-
   const services = [
     {
-      icon: <Megaphone className="w-10 h-10" />,
+      icon: <Megaphone className="w-8 h-8" />,
       title: "KOL Marketing",
       description:
-        "Only verified influencers with proven results. Access to our network of 600+ trusted KOLs across all major platforms.",
-      details: [
-        "Verified influencers with proven track records",
-        "Detailed performance analytics and ROI tracking",
-        "Multi-platform reach (Twitter, YouTube, Telegram)",
-        "Transparent pricing and clear deliverables",
-      ],
+        "Access to our network of 600+ verified influencers with proven track records across all major Web3 platforms.",
     },
     {
-      icon: <TrendingUp className="w-10 h-10" />,
-      title: "Token Value Creation",
+      icon: <Users className="w-8 h-8" />,
+      title: "Community Growth",
       description:
-        "Strategic buy pressure that delivers 3X buy volume, zero risk. Investment groups commit capital based on project potential.",
-      details: [
-        "Guaranteed 3X trading volume vs campaign budget",
-        "Advanced risk management mechanisms",
-        "Coordinated market making strategies",
-        "Long-term growth focus, not pump & dump",
-      ],
+        "We cultivate quality Web3 community members, driving meaningful growth and lasting brand loyalty.",
     },
     {
-      icon: <Newspaper className="w-10 h-10" />,
-      title: "PR & Media Marketing",
+      icon: <Network className="w-8 h-8" />,
+      title: "Community Management",
       description:
-        "Top crypto media, guaranteed coverage. Direct relationships with major publications and journalists.",
-      details: [
-        "Coverage in tier-1 crypto publications",
-        "Press release distribution and amplification",
-        "Interview coordination with key journalists",
-        "Media kit preparation and pitch strategy",
-      ],
+        "We expertly manage Web3 communities with effective channel moderation, interactive discussions, and engaging events.",
     },
     {
-      icon: <Building2 className="w-10 h-10" />,
-      title: "Tier-1 Exchange Listing",
+      icon: <TrendingUp className="w-8 h-8" />,
+      title: "Partnership Management",
       description:
-        "Direct access to Binance, OKX, and more. Navigate the complex listing process with expert guidance.",
-      details: [
-        "Direct relationships with top exchanges",
-        "Listing application support and optimization",
-        "Post-listing marketing coordination",
-        "Market maker introductions",
-      ],
-    },
-    {
-      icon: <Users className="w-10 h-10" />,
-      title: "VC Network",
-      description:
-        "Direct line to top VCs and investment groups. Access to our network of strategic investors.",
-      details: [
-        "Warm introductions to relevant VCs",
-        "Pitch deck review and optimization",
-        "Investment round strategy",
-        "Due diligence preparation support",
-      ],
-    },
-    {
-      icon: <ArrowUpRight className="w-10 h-10" />,
-      title: "Market Making",
-      description:
-        "Professional market making through trusted partners. Ensure healthy liquidity and price discovery.",
-      details: [
-        "Trusted market maker partnerships",
-        "Liquidity provision strategies",
-        "Price stability mechanisms",
-        "Exchange relationship management",
-      ],
+        "We establish strategic blockchain partnerships aligned with your project's long-term growth objectives.",
     },
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen text-white relative">
+      {/* Animated Background Orbs */}
+      <div className="floating-orb orb-1"></div>
+      <div className="floating-orb orb-2"></div>
+      <div className="floating-orb orb-3"></div>
+      <div className="gradient-mesh"></div>
+
       {/* Header */}
-      <header
-        className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-lg bg-background/30 "
-        data-testid="header"
-      >
-        <div className="max-w-7xl mx-auto px-6 py-4">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 backdrop-blur-md bg-black/50">
+        <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center gap-3" data-testid="logo">
+            <div className="flex items-center gap-3">
               <img 
                 src={magnorLogo} 
                 alt="Magnor Logo" 
-                className="h-10" 
+                className="h-8" 
                 style={{ 
-                  filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 24px rgba(59, 130, 246, 0.4)) brightness(0) invert(1)' 
+                  filter: 'brightness(0) invert(1)' 
                 }} 
               />
             </div>
 
             {/* Navigation */}
-            <nav
-              className="hidden md:flex items-center gap-6"
-              data-testid="nav-menu"
-            >
-              <button
-                onClick={() => scrollToSection("hero")}
-                className="text-sm hover:text-primary transition-colors"
-                data-testid="nav-home"
-              >
-                Home
-              </button>
-              <button
-                onClick={() => scrollToSection("case-studies")}
-                className="text-sm hover:text-primary transition-colors"
-                data-testid="nav-case-studies"
-              >
-                Case Studies
-              </button>
+            <nav className="hidden md:flex items-center gap-8">
               <button
                 onClick={() => scrollToSection("services")}
-                className="text-sm hover:text-primary transition-colors"
-                data-testid="nav-services"
+                className="text-sm text-gray-400 hover:text-white transition-colors"
               >
                 Services
               </button>
               <button
+                onClick={() => scrollToSection("clients")}
+                className="text-sm text-gray-400 hover:text-white transition-colors"
+              >
+                Clients
+              </button>
+              <button
                 onClick={() => scrollToSection("contact")}
-                className="text-sm hover:text-primary transition-colors"
-                data-testid="nav-contact"
+                className="text-sm text-gray-400 hover:text-white transition-colors"
               >
                 Contact
               </button>
             </nav>
 
             {/* CTA */}
-            <Button size="sm" asChild data-testid="button-header-cta">
+            <Button 
+              size="sm" 
+              variant="outline"
+              className="border-white/20 hover:bg-white/10 text-white"
+              asChild
+            >
               <a
                 href="https://t.me/emirweb3"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Get Started
+                Get In Touch
               </a>
             </Button>
           </div>
         </div>
       </header>
 
-      <section
-        className="relative py-32 mt-16 flex items-center justify-center"
-        data-testid="section-hero"
-      >
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-          <div className="mb-8">
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 px-6 flex items-center justify-center min-h-screen">
+        <div className="max-w-5xl mx-auto text-center">
+          <Badge
+            variant="outline"
+            className="mb-8 border-white/20 text-white/80 bg-white/5"
+          >
+            MAGNOR AGENCY
+          </Badge>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            The last Web3 marketing agency you will ever need.
+          </h1>
+          <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
+            -We Mean it.
+          </p>
+          <Button 
+            size="lg"
+            className="bg-white text-black hover:bg-gray-200"
+            asChild
+          >
+            <a
+              href="https://t.me/emirweb3"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Get In Touch
+            </a>
+          </Button>
+        </div>
+      </section>
+
+      {/* Stats Section with Flowing Logos */}
+      <section className="py-32 px-6 relative overflow-hidden" data-section="clients">
+        <div className="max-w-6xl mx-auto text-center relative">
+         
+          <div>
+            <Badge
+            variant="outline"
+            className="mb-12 border-white/20 text-white/80 bg-white/5"
+          >
+            TRUSTED BY
+          </Badge>
+          </div>
+          {/* Top flowing row - moving right */}
+          <div className="mb-12">
+            <div className="flex gap-4 animate-scroll-right">
+              {[...clients, ...clients].map((client, index) => (
+                <div
+                  key={`top-${index}`}
+                  className={`group flex-shrink-0 w-16 h-16 rounded-lg ${client.color} flex items-center justify-center transition-all duration-300 hover:scale-125 cursor-pointer overflow-hidden relative`}
+                >
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl z-0"></div>
+                  <div className={`absolute -inset-2 ${client.color} opacity-0 group-hover:opacity-60 blur-lg transition-opacity duration-300 z-0`}></div>
+                  {client.logo ? (
+                    <img 
+                      src={client.logo} 
+                      alt={client.name} 
+                      className="relative z-20 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="relative z-20 text-xs font-bold text-white text-center">
+                      {client.name.substring(0, 2).toUpperCase()}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Center content */}
+          
+          <div className="my-16">
+             
+            
+            {/* 3D Rotating Stats Cube */}
+            <div className="stat-cube mt-16">
+              <div className="stat-cube-inner">
+                {/* Front Face */}
+                <div className="stat-face stat-face-front">
+                  <h2 className="text-6xl md:text-7xl font-bold mb-4">+200</h2>
+                  <p className="text-2xl text-gray-400">Campaigns Launched</p>
+                </div>
+                
+                {/* Right Face */}
+                <div className="stat-face stat-face-right">
+                  <h2 className="text-6xl md:text-7xl font-bold mb-4">$80M+</h2>
+                  <p className="text-2xl text-gray-400">Volume Generated</p>
+                </div>
+                
+                {/* Back Face */}
+                <div className="stat-face stat-face-back">
+                  <h2 className="text-6xl md:text-7xl font-bold mb-4">+200</h2>
+                  <p className="text-2xl text-gray-400">KOLs Network</p>
+                </div>
+                
+                {/* Left Face */}
+                <div className="stat-face stat-face-left">
+                  <h2 className="text-6xl md:text-7xl font-bold mb-4">+100</h2>
+                  <p className="text-2xl text-gray-400">Happy Clients</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Bottom flowing row - moving left */}
+          <div className="mt-12">
+            <div className="flex gap-4 animate-scroll-left">
+              {[...clients, ...clients].map((client, index) => (
+                <div
+                  key={`bottom-${index}`}
+                  className={`group flex-shrink-0 w-16 h-16 rounded-lg ${client.color} flex items-center justify-center transition-all duration-300 hover:scale-125 cursor-pointer overflow-hidden relative`}
+                >
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl z-0"></div>
+                  <div className={`absolute -inset-2 ${client.color} opacity-0 group-hover:opacity-60 blur-lg transition-opacity duration-300 z-0`}></div>
+                  {client.logo ? (
+                    <img 
+                      src={client.logo} 
+                      alt={client.name} 
+                      className="relative z-20 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="relative z-20 text-xs font-bold text-white text-center">
+                      {client.name.substring(0, 2).toUpperCase()}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-32 px-6 bg-gradient-to-b from-black to-zinc-950" data-section="services">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
             <Badge
               variant="outline"
-              className="mb-4"
-              data-testid="badge-founded"
+              className="mb-8 border-white/20 text-white/80 bg-white/5"
             >
-              Founded in 2020
+              SERVICES
             </Badge>
-            <p
-              className="text-muted-foreground mb-2"
-              data-testid="text-location"
-            >
-              Based in Dubai
-            </p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Our Web3 Marketing & Growth Services
+            </h2>
           </div>
-          <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 max-w-4xl mx-auto leading-tight"
-            data-testid="text-hero-title"
-          >
-            Empowering Web3 Projects with Trust & Strategy
-          </h1>
-          <p
-            className="text-xl text-muted-foreground mb-12"
-            data-testid="text-tagline"
-          >
-            "Certanity in Chaos"
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" data-testid="button-apply">
-              Get Started
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              data-testid="button-telegram"
-            >
-              <a
-                href="https://t.me/emirweb3"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Contact Us
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
 
-      <section
-        className="py-20 section-purple"
-        data-testid="section-case-studies"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <h2
-            className="text-3xl md:text-4xl font-bold text-center mb-4"
-            data-testid="text-case-studies-title"
-          >
-            Trusted by Leading Web3 Projects
-          </h2>
-          <p className="text-center text-muted-foreground mb-16">
-            Proven results across exchanges, DeFi, and gaming sectors
-          </p>
-
-          <Tabs
-            defaultValue="exchanges"
-            className="w-full"
-            data-testid="tabs-case-studies"
-          >
-            <TabsList className="w-full flex flex-wrap justify-center mb-12 h-auto gap-2">
-              {caseStudyCategories.map((category) => (
-                <TabsTrigger
-                  key={category.id}
-                  value={category.id}
-                  data-testid={`tab-${category.id}`}
-                >
-                  {category.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-
-            {caseStudyCategories.map((category) => (
-              <TabsContent
-                key={category.id}
-                value={category.id}
-                data-testid={`tab-content-${category.id}`}
-              >
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                  {category.clients.map((client, idx) => (
-                    <Card
-                      key={idx}
-                      className="p-8 hover-elevate neon-glow"
-                      data-testid={`card-client-${idx}`}
-                    >
-                      <div className="mb-6 flex items-center justify-center">
-                        <img
-                          src={client.logo}
-                          alt={client.name}
-                          className="h-12 object-contain"
-                          data-testid={`img-client-logo-${idx}`}
-                        />
-                      </div>
-                      <h3
-                        className="text-2xl font-bold mb-4"
-                        data-testid={`text-client-name-${idx}`}
-                      >
-                        {client.name}
-                      </h3>
-                      <p
-                        className="text-muted-foreground mb-6"
-                        data-testid={`text-client-description-${idx}`}
-                      >
-                        {client.description}
-                      </p>
-                      {client.metrics.length > 0 && (
-                        <div className="grid grid-cols-1 gap-4">
-                          {client.metrics.map((metric, mIdx) => (
-                            <div
-                              key={mIdx}
-                              data-testid={`metric-${idx}-${mIdx}`}
-                            >
-                              <div
-                                className="text-3xl font-bold text-primary mb-1"
-                                data-testid={`text-metric-value-${idx}-${mIdx}`}
-                              >
-                                {metric.value}
-                              </div>
-                              <div
-                                className="text-sm text-muted-foreground"
-                                data-testid={`text-metric-label-${idx}-${mIdx}`}
-                              >
-                                {metric.label}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </Card>
-                  ))}
-                </div>
-
-                {category.otherPartners.length > 0 && (
-                  <div>
-                    <h4
-                      className="text-lg font-semibold mb-6 text-center"
-                      data-testid="text-more-partners"
-                    >
-                      More of our partners
-                    </h4>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                      {category.otherPartners.map((partner, pIdx) => (
-                        <div
-                          key={pIdx}
-                          className="p-4 rounded-md border bg-card flex items-center justify-center"
-                          data-testid={`partner-logo-${pIdx}`}
-                        >
-                          <img
-                            src={logoPlaceholder}
-                            alt={partner}
-                            className="h-8 object-contain grayscale opacity-70"
-                            data-testid={`img-partner-${pIdx}`}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </TabsContent>
-            ))}
-          </Tabs>
-        </div>
-      </section>
-
-      <section
-        className="py-20 section-blue-orange"
-        data-testid="section-services"
-      >
-        <div className="max-w-5xl mx-auto px-6">
-          <h2
-            className="text-3xl md:text-4xl font-bold text-center mb-4"
-            data-testid="text-services-title"
-          >
-            Comprehensive Web3 Marketing Solutions
-          </h2>
-          <p className="text-center text-muted-foreground mb-16">
-            End-to-end services designed for Web3 projects at every stage
-          </p>
-
-          <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <Card
                 key={index}
-                className="overflow-hidden gradient-border"
-                data-testid={`card-service-${index}`}
+                className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80"
               >
-                <button
-                  onClick={() =>
-                    setExpandedService(expandedService === index ? null : index)
-                  }
-                  className="w-full p-6 flex items-start gap-6 text-left hover-elevate"
-                  data-testid={`button-service-toggle-${index}`}
-                >
-                  <div className="text-primary flex-shrink-0 mt-1">
+                <div className="mb-6">
+                  <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
                     {service.icon}
                   </div>
-                  <div className="flex-1">
-                    <h3
-                      className="text-xl font-bold mb-2"
-                      data-testid={`text-service-title-${index}`}
-                    >
-                      {service.title}
-                    </h3>
-                    <p
-                      className="text-muted-foreground"
-                      data-testid={`text-service-description-${index}`}
-                    >
-                      {service.description}
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0">
-                    {expandedService === index ? (
-                      <ChevronUp className="w-5 h-5" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5" />
-                    )}
-                  </div>
-                </button>
-
-                {expandedService === index && (
-                  <div
-                    className="px-6 pb-6 pt-0 border-t"
-                    data-testid={`service-details-${index}`}
-                  >
-                    <ul className="space-y-3 mt-4">
-                      {service.details.map((detail, dIdx) => (
-                        <li
-                          key={dIdx}
-                          className="flex items-start gap-2"
-                          data-testid={`service-detail-${index}-${dIdx}`}
-                        >
-                          <span className="text-primary mt-1">✓</span>
-                          <span className="text-muted-foreground">
-                            {detail}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-white">
+                  {service.title}
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  {service.description}
+                </p>
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 section-orange" data-testid="section-contact">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-8"
-            data-testid="text-contact-title"
-          >
+      {/* Additional Services */}
+      <section className="py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+              <div className="mb-6">
+                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
+                  <Newspaper className="w-8 h-8" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white">
+                PR & Media Marketing
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Top crypto media, guaranteed coverage. Direct relationships with major publications and journalists.
+              </p>
+            </Card>
+
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+              <div className="mb-6">
+                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
+                  <Building2 className="w-8 h-8" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white">
+                Tier-1 Exchange Listing
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Direct access to Binance, OKX, and more. Navigate the complex listing process with expert guidance.
+              </p>
+            </Card>
+
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+              <div className="mb-6">
+                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
+                  <Users className="w-8 h-8" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white">
+                VC Network
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Direct line to top VCs and investment groups. Access to our network of strategic investors.
+              </p>
+            </Card>
+
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+              <div className="mb-6">
+                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
+                  <ArrowUpRight className="w-8 h-8" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white">
+                Market Making
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Professional market making through trusted partners. Ensure healthy liquidity and price discovery.
+              </p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-32 px-6 bg-zinc-950" data-section="contact">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">
             Ready to elevate your Web3 project?
           </h2>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
-            <Button size="lg" asChild data-testid="button-contact-email">
-              <a href="mailto:info@magnor.agency">
-                <Mail className="w-4 h-4 mr-2" />
-                Email Us
-              </a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              data-testid="button-contact-telegram"
+          <p className="text-xl text-gray-400 mb-12">
+            Get in touch with our team to discuss your project
+          </p>
+          <Button 
+            size="lg"
+            className="bg-white text-black hover:bg-gray-200"
+            asChild
+          >
+            <a
+              href="https://t.me/emirweb3"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <a
-                href="https://t.me/emirweb3"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Send className="w-4 h-4 mr-2" />
-                Telegram
-              </a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              data-testid="button-contact-website"
-            >
-              <a
-                href="https://www.magnor.agency"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Globe className="w-4 h-4 mr-2" />
-                Website
-              </a>
-            </Button>
-          </div>
-          <p className="text-muted-foreground">
+              Contact Us
+            </a>
+          </Button>
+          <p className="text-gray-500 mt-8">
             info@magnor.agency | @emirweb3 | www.magnor.agency
           </p>
         </div>
       </section>
 
-      <footer
-        className="py-16 border-t border-white/10 bg-card/30"
-        data-testid="footer"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            {/* Company Info */}
-            <div data-testid="footer-company">
-              <div className="flex items-center gap-3 mb-4">
-                <img 
-                  src={magnorLogo} 
-                  alt="Magnor Logo" 
-                  className="h-8" 
-                  style={{ 
-                    filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 24px rgba(59, 130, 246, 0.4)) brightness(0) invert(1)' 
-                  }} 
-                />
-              </div>
-              <p className="text-sm text-muted-foreground mb-4">
-                Empowering Web3 Projects with Trust & Strategy since 2020
-              </p>
-              <p className="text-sm text-muted-foreground">Based in Dubai</p>
+      {/* Footer */}
+      <footer className="py-12 px-6 border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <img 
+                src={magnorLogo} 
+                alt="Magnor Logo" 
+                className="h-6" 
+                style={{ 
+                  filter: 'brightness(0) invert(1)' 
+                }} 
+              />
             </div>
-
-            {/* Quick Links */}
-            <div data-testid="footer-links">
-              <h4 className="font-semibold mb-4">Quick Links</h4>
-              <div className="space-y-2">
-                <button
-                  onClick={() => scrollToSection("hero")}
-                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="footer-link-home"
-                >
-                  Home
-                </button>
-                <button
-                  onClick={() => scrollToSection("case-studies")}
-                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="footer-link-case-studies"
-                >
-                  Case Studies
-                </button>
-                <button
-                  onClick={() => scrollToSection("services")}
-                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="footer-link-services"
-                >
-                  Services
-                </button>
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div data-testid="footer-contact">
-              <h4 className="font-semibold mb-4">Contact</h4>
-              <div className="space-y-2">
-                <a
-                  href="mailto:info@magnor.agency"
-                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="footer-email"
-                >
-                  info@magnor.agency
-                </a>
-                <a
-                  href="https://www.magnor.agency"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="footer-website"
-                >
-                  www.magnor.agency
-                </a>
-                <a
-                  href="https://t.me/emirweb3"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="footer-telegram-link"
-                >
-                  @emirweb3
-                </a>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div data-testid="footer-social">
-              <h4 className="font-semibold mb-4">Follow Us</h4>
-              <div className="flex gap-4">
-                <a
-                  href="https://t.me/emirweb3"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="social-telegram"
-                  aria-label="Telegram"
-                >
-                  <SiTelegram className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="social-twitter"
-                  aria-label="X (Twitter)"
-                >
-                  <SiX className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="social-linkedin"
-                  aria-label="LinkedIn"
-                >
-                  <SiLinkedin className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="pt-8 border-t border-white/10 text-center">
-            <p
-              className="text-sm text-muted-foreground"
-              data-testid="text-copyright"
-            >
+            
+            <p className="text-sm text-gray-500">
               © 2024 Magnor Agency. All rights reserved.
             </p>
+
+            <div className="flex items-center gap-6">
+              <button
+                onClick={() => scrollToSection("services")}
+                className="text-sm text-gray-400 hover:text-white transition-colors"
+              >
+                Services
+              </button>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="text-sm text-gray-400 hover:text-white transition-colors"
+              >
+                Contact
+              </button>
+            </div>
           </div>
         </div>
       </footer>
