@@ -18,7 +18,7 @@ import magnorLogo from "@shared/Logo1.svg";
 import type { Brand } from "@shared/schema";
 
 // Import all logos using Vite's glob import
-const logoModules = import.meta.glob('../../public/logos/*', { eager: true, as: 'url' });
+const logoModules = import.meta.glob('../assets/logos/*', { eager: true, as: 'url' });
 
 // Helper function to get local logo path
 const getLogoPath = (brandName: string): string => {
@@ -26,7 +26,7 @@ const getLogoPath = (brandName: string): string => {
   const extensions = ['.png', '.jpg', '.jpeg'];
   
   for (const ext of extensions) {
-    const path = `../../public/logos/${brandName}${ext}`;
+    const path = `../assets/logos/${brandName}${ext}`;
     if (logoModules[path]) {
       return logoModules[path] as string;
     }
