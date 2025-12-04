@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import magnorLogo from "@shared/Logo1.svg";
 import type { Brand } from "@shared/schema";
-
+//aaaa
 // Simple logo path helper - logos are in public/logos folder
 const getLogoPath = (brandName: string): string => {
   // Logo file extensions mapping
