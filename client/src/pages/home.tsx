@@ -16,48 +16,7 @@ import {
 } from "lucide-react";
 import magnorLogo from "@shared/Logo1.svg";
 import type { Brand } from "@shared/schema";
-//aaaa
-// Simple logo path helper - logos are in public/logos folder
-const getLogoPath = (brandName: string): string => {
-  // Logo file extensions mapping
-  const logoExtensions: Record<string, string> = {
-    "Antix": "png",
-    "Artrade": "png",
-    "Binance": "png",
-    "Bitget": "png",
-    "CMedia": "jpeg",
-    "Castrum Capital": "jpg",
-    "Coinscout": "jpg",
-    "Concordium": "png",
-    "Disence": "jpg",
-    "Fatty": "png",
-    "KOLZ": "png",
-    "Limewire": "png",
-    "Lingo": "png",
-    "Markchain": "jpg",
-    "Metron Trading": "jpg",
-    "My Lovely Planet": "png",
-    "OKX": "jpg",
-    "Opulous": "png",
-    "Space Catch": "png",
-    "Triangle": "png",
-    "UPX": "jpeg",
-    "XBO": "png",
-    "Zetarium": "png",
-    "Zkverify": "png",
-  };
-  
-  const ext = logoExtensions[brandName];
-  const logoPath = ext ? `/logos/${brandName}.${ext}` : '';
-  
-  if (logoPath) {
-    console.log(`🖼️ Logo path for ${brandName}:`, logoPath);
-  } else {
-    console.warn(`⚠️ No logo found for brand: ${brandName}`);
-  }
-  
-  return logoPath;
-};
+import { getLogoForBrand } from "@/assets/logos";
 
 export default function Home() {
   const [clients, setClients] = useState<Brand[]>([]);
@@ -70,8 +29,8 @@ export default function Home() {
   useEffect(() => {
     console.log("📦 Clients updated:", clients.length, "clients");
     clients.forEach(client => {
-      const path = getLogoPath(client.name);
-      console.log(`  - ${client.name}: ${path}`);
+      const logo = getLogoForBrand(client.name);
+      console.log(`  - ${client.name}: ${logo ? '✅ Logo loaded' : '❌ No logo'}`);
     });
   }, [clients]);
 
@@ -259,11 +218,15 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-xl z-0"></div>
                   <div className="flex flex-col items-center justify-center w-full h-full">
-                    {getLogoPath(client.name) ? (
+                    {getLogoForBrand(client.name) ? (
                       <img
-                        src={getLogoPath(client.name)!}
+                        src={getLogoForBrand(client.name)!}
                         alt={client.name}
                         className="relative z-20 w-full h-full object-cover"
+                        onError={(e) => {
+                          console.error(`Failed to load logo for ${client.name}`);
+                          e.currentTarget.style.display = 'none';
+                        }}
                       />
                     ) : (
                       <span className="relative z-20 text-xs font-bold text-white text-center">
@@ -326,11 +289,15 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-xl z-0"></div>
                   <div className="flex flex-col items-center justify-center w-full h-full">
-                    {getLogoPath(client.name) ? (
+                    {getLogoForBrand(client.name) ? (
                       <img
-                        src={getLogoPath(client.name)!}
+                        src={getLogoForBrand(client.name)!}
                         alt={client.name}
                         className="relative z-20 w-full h-full object-cover"
+                        onError={(e) => {
+                          console.error(`Failed to load logo for ${client.name}`);
+                          e.currentTarget.style.display = 'none';
+                        }}
                       />
                     ) : (
                       <span className="relative z-20 text-xs font-bold text-white text-center">
