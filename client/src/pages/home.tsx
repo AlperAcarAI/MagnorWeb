@@ -17,22 +17,38 @@ import {
 import magnorLogo from "@shared/Logo1.svg";
 import type { Brand } from "@shared/schema";
 
-// Import all logos using Vite's glob import
-const logoModules = import.meta.glob('../assets/logos/*', { eager: true, as: 'url' });
-
-// Helper function to get local logo path
+// Simple logo path helper - logos are in public/logos folder
 const getLogoPath = (brandName: string): string => {
-  // Try different extensions
-  const extensions = ['.png', '.jpg', '.jpeg'];
+  // Logo file extensions mapping
+  const logoExtensions: Record<string, string> = {
+    "Antix": "png",
+    "Artrade": "png",
+    "Binance": "png",
+    "Bitget": "png",
+    "CMedia": "jpeg",
+    "Castrum Capital": "jpg",
+    "Coinscout": "jpg",
+    "Concordium": "png",
+    "Disence": "jpg",
+    "Fatty": "png",
+    "KOLZ": "png",
+    "Limewire": "png",
+    "Lingo": "png",
+    "Markchain": "jpg",
+    "Metron Trading": "jpg",
+    "My Lovely Planet": "png",
+    "OKX": "jpg",
+    "Opulous": "png",
+    "Space Catch": "png",
+    "Triangle": "png",
+    "UPX": "jpeg",
+    "XBO": "png",
+    "Zetarium": "png",
+    "Zkverify": "png",
+  };
   
-  for (const ext of extensions) {
-    const path = `../assets/logos/${brandName}${ext}`;
-    if (logoModules[path]) {
-      return logoModules[path] as string;
-    }
-  }
-  
-  return '';
+  const ext = logoExtensions[brandName];
+  return ext ? `/logos/${brandName}.${ext}` : '';
 };
 
 export default function Home() {
