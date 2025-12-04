@@ -17,37 +17,22 @@ import {
 import magnorLogo from "@shared/Logo1.svg";
 import type { Brand } from "@shared/schema";
 
-// Logo mapping for local files
-const logoMap: Record<string, string> = {
-  "Antix": "/logos/Antix.png",
-  "Artrade": "/logos/Artrade.png",
-  "Binance": "/logos/Binance.png",
-  "Bitget": "/logos/Bitget.png",
-  "CMedia": "/logos/CMedia.jpeg",
-  "Castrum Capital": "/logos/Castrum Capital.jpg",
-  "Coinscout": "/logos/Coinscout.jpg",
-  "Concordium": "/logos/Concordium.png",
-  "Disence": "/logos/Disence.jpg",
-  "Fatty": "/logos/Fatty.png",
-  "KOLZ": "/logos/KOLZ.png",
-  "Limewire": "/logos/Limewire.png",
-  "Lingo": "/logos/Lingo.png",
-  "Markchain": "/logos/Markchain.jpg",
-  "Metron Trading": "/logos/Metron Trading.jpg",
-  "My Lovely Planet": "/logos/My Lovely Planet.png",
-  "OKX": "/logos/OKX.jpg",
-  "Opulous": "/logos/Opulous.png",
-  "Space Catch": "/logos/Space Catch.png",
-  "Triangle": "/logos/Triangle.png",
-  "UPX": "/logos/UPX.jpeg",
-  "XBO": "/logos/XBO.png",
-  "Zetarium": "/logos/Zetarium.png",
-  "Zkverify": "/logos/Zkverify.png",
-};
+// Import all logos using Vite's glob import
+const logoModules = import.meta.glob('../../public/logos/*', { eager: true, as: 'url' });
 
 // Helper function to get local logo path
-const getLogoPath = (brandName: string): string | null => {
-  return logoMap[brandName] || null;
+const getLogoPath = (brandName: string): string => {
+  // Try different extensions
+  const extensions = ['.png', '.jpg', '.jpeg'];
+  
+  for (const ext of extensions) {
+    const path = `../../public/logos/${brandName}${ext}`;
+    if (logoModules[path]) {
+      return logoModules[path] as string;
+    }
+  }
+  
+  return '';
 };
 
 export default function Home() {
