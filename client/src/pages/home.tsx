@@ -48,29 +48,52 @@ const getLogoPath = (brandName: string): string => {
   };
   
   const ext = logoExtensions[brandName];
-  return ext ? `/logos/${brandName}.${ext}` : '';
+  const logoPath = ext ? `/logos/${brandName}.${ext}` : '';
+  
+  if (logoPath) {
+    console.log(`🖼️ Logo path for ${brandName}:`, logoPath);
+  } else {
+    console.warn(`⚠️ No logo found for brand: ${brandName}`);
+  }
+  
+  return logoPath;
 };
 
 export default function Home() {
   const [clients, setClients] = useState<Brand[]>([]);
 
   useEffect(() => {
+    console.log("🚀 Home component mounted, fetching brands...");
     fetchBrands();
   }, []);
 
+  useEffect(() => {
+    console.log("📦 Clients updated:", clients.length, "clients");
+    clients.forEach(client => {
+      const path = getLogoPath(client.name);
+      console.log(`  - ${client.name}: ${path}`);
+    });
+  }, [clients]);
+
   const fetchBrands = async () => {
     try {
+      console.log("🔄 Fetching brands from API...");
       const response = await fetch("/api/brands");
+      console.log("📡 API Response status:", response.status);
       const data = await response.json();
+      console.log("✅ Brands fetched:", data.length, "brands");
+      console.log("📊 Brand data:", data);
       setClients(data);
     } catch (error) {
-      console.error("Failed to fetch brands:", error);
+      console.error("❌ Failed to fetch brands:", error);
       // Fallback to default brands if API fails
-      setClients([
+      const fallbackBrands = [
         { id: "1", name: "Markchain", color: "bg-purple-500", logo: null, createdAt: null },
         { id: "2", name: "Disence", color: "bg-blue-500", logo: null, createdAt: null },
         { id: "3", name: "Artrade", color: "bg-green-500", logo: null, createdAt: null },
-      ]);
+      ];
+      console.log("⚠️ Using fallback brands:", fallbackBrands);
+      setClients(fallbackBrands);
     }
   };
 
