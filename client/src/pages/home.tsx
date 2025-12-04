@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,46 +14,62 @@ import {
   Twitter,
 } from "lucide-react";
 import magnorLogo from "@shared/Logo1.svg";
-import type { Brand } from "@shared/schema";
-import { getLogoForBrand } from "@/assets/logos";
+
+// Static logo imports
+import antixLogo from "/logos/Antix.png";
+import artradeLogo from "/logos/Artrade.png";
+import binanceLogo from "/logos/Binance.png";
+import bitgetLogo from "/logos/Bitget.png";
+import cmediaLogo from "/logos/CMedia.jpeg";
+import castrumLogo from "/logos/Castrum Capital.jpg";
+import coinscoutLogo from "/logos/Coinscout.jpg";
+import concordiumLogo from "/logos/Concordium.png";
+import disenceLogo from "/logos/Disence.jpg";
+import fattyLogo from "/logos/Fatty.png";
+import kolzLogo from "/logos/KOLZ.png";
+import limewireLogo from "/logos/Limewire.png";
+import lingoLogo from "/logos/Lingo.png";
+import markchainLogo from "/logos/Markchain.jpg";
+import metronLogo from "/logos/Metron Trading.jpg";
+import mylovelyplanetLogo from "/logos/My Lovely Planet.png";
+import okxLogo from "/logos/OKX.jpg";
+import opulousLogo from "/logos/Opulous.png";
+import spacecatchLogo from "/logos/Space Catch.png";
+import triangleLogo from "/logos/Triangle.png";
+import upxLogo from "/logos/UPX.jpeg";
+import xboLogo from "/logos/XBO.png";
+import zetariumLogo from "/logos/Zetarium.png";
+import zkverifyLogo from "/logos/Zkverify.png";
+
+// Static clients list with logos
+const clients = [
+  { name: "Antix", logo: antixLogo },
+  { name: "Artrade", logo: artradeLogo },
+  { name: "Binance", logo: binanceLogo },
+  { name: "Bitget", logo: bitgetLogo },
+  { name: "CMedia", logo: cmediaLogo },
+  { name: "Castrum Capital", logo: castrumLogo },
+  { name: "Coinscout", logo: coinscoutLogo },
+  { name: "Concordium", logo: concordiumLogo },
+  { name: "Disence", logo: disenceLogo },
+  { name: "Fatty", logo: fattyLogo },
+  { name: "KOLZ", logo: kolzLogo },
+  { name: "Limewire", logo: limewireLogo },
+  { name: "Lingo", logo: lingoLogo },
+  { name: "Markchain", logo: markchainLogo },
+  { name: "Metron Trading", logo: metronLogo },
+  { name: "My Lovely Planet", logo: mylovelyplanetLogo },
+  { name: "OKX", logo: okxLogo },
+  { name: "Opulous", logo: opulousLogo },
+  { name: "Space Catch", logo: spacecatchLogo },
+  { name: "Triangle", logo: triangleLogo },
+  { name: "UPX", logo: upxLogo },
+  { name: "XBO", logo: xboLogo },
+  { name: "Zetarium", logo: zetariumLogo },
+  { name: "Zkverify", logo: zkverifyLogo },
+];
 
 export default function Home() {
-  const [clients, setClients] = useState<Brand[]>([]);
-
-  useEffect(() => {
-    console.log("🚀 Home component mounted, fetching brands...");
-    fetchBrands();
-  }, []);
-
-  useEffect(() => {
-    console.log("📦 Clients updated:", clients.length, "clients");
-    clients.forEach(client => {
-      const logo = getLogoForBrand(client.name);
-      console.log(`  - ${client.name}: ${logo ? '✅ Logo loaded' : '❌ No logo'}`);
-    });
-  }, [clients]);
-
-  const fetchBrands = async () => {
-    try {
-      console.log("🔄 Fetching brands from API...");
-      const response = await fetch("/api/brands");
-      console.log("📡 API Response status:", response.status);
-      const data = await response.json();
-      console.log("✅ Brands fetched:", data.length, "brands");
-      console.log("📊 Brand data:", data);
-      setClients(data);
-    } catch (error) {
-      console.error("❌ Failed to fetch brands:", error);
-      // Fallback to default brands if API fails
-      const fallbackBrands = [
-        { id: "1", name: "Markchain", color: "bg-purple-500", logo: null, createdAt: null },
-        { id: "2", name: "Disence", color: "bg-blue-500", logo: null, createdAt: null },
-        { id: "3", name: "Artrade", color: "bg-green-500", logo: null, createdAt: null },
-      ];
-      console.log("⚠️ Using fallback brands:", fallbackBrands);
-      setClients(fallbackBrands);
-    }
-  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.querySelector(
@@ -218,21 +233,11 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-xl z-0"></div>
                   <div className="flex flex-col items-center justify-center w-full h-full">
-                    {getLogoForBrand(client.name) ? (
-                      <img
-                        src={getLogoForBrand(client.name)!}
-                        alt={client.name}
-                        className="relative z-20 w-full h-full object-cover"
-                        onError={(e) => {
-                          console.error(`Failed to load logo for ${client.name}`);
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                    ) : (
-                      <span className="relative z-20 text-xs font-bold text-white text-center">
-                        {client.name.substring(0, 2).toUpperCase()}
-                      </span>
-                    )}
+                    <img
+                      src={client.logo}
+                      alt={client.name}
+                      className="relative z-20 w-full h-full object-cover"
+                    />
                   </div>
                   <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                     <span className="text-xs font-semibold text-white bg-black/80 px-2 py-1 rounded">
@@ -289,21 +294,11 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-xl z-0"></div>
                   <div className="flex flex-col items-center justify-center w-full h-full">
-                    {getLogoForBrand(client.name) ? (
-                      <img
-                        src={getLogoForBrand(client.name)!}
-                        alt={client.name}
-                        className="relative z-20 w-full h-full object-cover"
-                        onError={(e) => {
-                          console.error(`Failed to load logo for ${client.name}`);
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                    ) : (
-                      <span className="relative z-20 text-xs font-bold text-white text-center">
-                        {client.name.substring(0, 2).toUpperCase()}
-                      </span>
-                    )}
+                    <img
+                      src={client.logo}
+                      alt={client.name}
+                      className="relative z-20 w-full h-full object-cover"
+                    />
                   </div>
                   <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                     <span className="text-xs font-semibold text-white bg-black/80 px-2 py-1 rounded">
