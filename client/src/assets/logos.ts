@@ -29,7 +29,9 @@ const logoExtensions: Record<string, string> = {
 export const getLogoForBrand = (brandName: string): string | null => {
   const ext = logoExtensions[brandName];
   if (ext) {
-    const logoPath = `/logos/${brandName}.${ext}`;
+    // Encode the brand name to handle spaces and special characters in URLs
+    const encodedBrandName = encodeURIComponent(brandName);
+    const logoPath = `/logos/${encodedBrandName}.${ext}`;
     console.log(`✅ Logo path for ${brandName}:`, logoPath);
     return logoPath;
   }
