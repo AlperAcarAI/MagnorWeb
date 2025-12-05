@@ -13,6 +13,7 @@ import {
   Linkedin,
   Twitter,
 } from "lucide-react";
+import { Link } from "wouter";
 import magnorLogo from "@shared/Logo1.svg";
 
 // Static logo imports
@@ -159,6 +160,12 @@ export default function Home() {
               >
                 Contact
               </button>
+              <Link
+                href="/pitchdeck"
+                className="text-sm text-gray-400 hover:text-white transition-colors"
+              >
+                Pitchdeck
+              </Link>
             </nav>
 
             {/* CTA */}

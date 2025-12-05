@@ -74,7 +74,7 @@ const clients = [
 
 export default function PitchDeck() {
     const [currentSlide, setCurrentSlide] = useState(0);
-    const totalSlides = 5;
+    const totalSlides = 6;
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -277,8 +277,55 @@ export default function PitchDeck() {
             </div>
         </div>,
 
-        // Slide 4: Token Value Creation - Key Benefits
+        // Slide 4: Campaign Showcase
         <div key="slide4" className="flex flex-col items-center justify-center min-h-screen px-6">
+            <div className="max-w-7xl w-full">
+                <h1 className="text-5xl md:text-7xl font-bold mb-8">Campaign Showcase</h1>
+                <p className="text-xl text-gray-400 mb-12">See how we amplify your project across major platforms</p>
+
+                <div className="grid md:grid-cols-3 gap-8">
+                    <div className="group">
+                        <div className="rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 transition-all shadow-2xl">
+                            <img
+                                src="/campaign-telegram.png"
+                                alt="Telegram Campaign"
+                                className="w-full h-auto"
+                            />
+                        </div>
+                        <p className="text-center text-gray-400 mt-4 text-lg font-semibold">Telegram</p>
+                    </div>
+
+                    <div className="group">
+                        <div className="rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 transition-all shadow-2xl">
+                            <img
+                                src="/campaign-youtube.png"
+                                alt="YouTube Campaign"
+                                className="w-full h-auto"
+                            />
+                        </div>
+                        <p className="text-center text-gray-400 mt-4 text-lg font-semibold">YouTube</p>
+                    </div>
+
+                    <div className="group">
+                        <div className="rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 transition-all shadow-2xl">
+                            <img
+                                src="/campaign-twitter.png"
+                                alt="Twitter/X Campaign"
+                                className="w-full h-auto"
+                            />
+                        </div>
+                        <p className="text-center text-gray-400 mt-4 text-lg font-semibold">Twitter / X</p>
+                    </div>
+                </div>
+
+                <p className="text-center text-gray-400 text-xl mt-12">
+                    Multi-platform campaigns designed for maximum reach and engagement
+                </p>
+            </div>
+        </div>,
+
+        // Slide 5: Token Value Creation - Key Benefits
+        <div key="slide5" className="flex flex-col items-center justify-center min-h-screen px-6">
             <div className="max-w-7xl w-full">
                 <h1 className="text-5xl md:text-7xl font-bold mb-16">
                     Token Value Creation <span className="text-gray-500">— Key Benefits</span>
@@ -340,8 +387,8 @@ export default function PitchDeck() {
             </div>
         </div>,
 
-        // Slide 5: How We Work
-        <div key="slide5" className="flex flex-col items-center justify-center min-h-screen px-6">
+        // Slide 6: How We Work
+        <div key="slide6" className="flex flex-col items-center justify-center min-h-screen px-6">
             <div className="max-w-7xl w-full">
                 <h1 className="text-5xl md:text-7xl font-bold mb-8">How We Work</h1>
                 <p className="text-xl text-gray-400 mb-16">
