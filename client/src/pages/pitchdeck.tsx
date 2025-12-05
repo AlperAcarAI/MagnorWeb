@@ -10,9 +10,67 @@ import {
     Newspaper,
     Handshake,
     Scale,
+    Megaphone,
+    Network,
+    Building2,
+    ArrowUpRight,
 } from "lucide-react";
 import { Link } from "wouter";
 import magnorLogo from "@shared/Logo1.svg";
+
+// Static logo imports (same as home.tsx)
+import antixLogo from "/logos/Antix.png";
+import artradeLogo from "/logos/Artrade.png";
+import binanceLogo from "/logos/Binance.png";
+import bitgetLogo from "/logos/Bitget.png";
+import cmediaLogo from "/logos/CMedia.jpeg";
+import castrumLogo from "/logos/Castrum Capital.jpg";
+import coinscoutLogo from "/logos/Coinscout.jpg";
+import concordiumLogo from "/logos/Concordium.png";
+import disenceLogo from "/logos/Disence.jpg";
+import fattyLogo from "/logos/Fatty.png";
+import kolzLogo from "/logos/KOLZ.png";
+import limewireLogo from "/logos/Limewire.png";
+import lingoLogo from "/logos/Lingo.png";
+import markchainLogo from "/logos/Markchain.jpg";
+import metronLogo from "/logos/Metron Trading.jpg";
+import mylovelyplanetLogo from "/logos/My Lovely Planet.png";
+import okxLogo from "/logos/OKX.jpg";
+import opulousLogo from "/logos/Opulous.png";
+import spacecatchLogo from "/logos/Space Catch.png";
+import triangleLogo from "/logos/Triangle.png";
+import upxLogo from "/logos/UPX.jpeg";
+import xboLogo from "/logos/XBO.png";
+import zetariumLogo from "/logos/Zetarium.png";
+import zkverifyLogo from "/logos/Zkverify.png";
+
+// Static clients list with logos (same as home.tsx)
+const clients = [
+    { name: "Antix", logo: antixLogo },
+    { name: "Artrade", logo: artradeLogo },
+    { name: "Binance", logo: binanceLogo },
+    { name: "Bitget", logo: bitgetLogo },
+    { name: "CMedia", logo: cmediaLogo },
+    { name: "Castrum Capital", logo: castrumLogo },
+    { name: "Coinscout", logo: coinscoutLogo },
+    { name: "Concordium", logo: concordiumLogo },
+    { name: "Disence", logo: disenceLogo },
+    { name: "Fatty", logo: fattyLogo },
+    { name: "KOLZ", logo: kolzLogo },
+    { name: "Limewire", logo: limewireLogo },
+    { name: "Lingo", logo: lingoLogo },
+    { name: "Markchain", logo: markchainLogo },
+    { name: "Metron Trading", logo: metronLogo },
+    { name: "My Lovely Planet", logo: mylovelyplanetLogo },
+    { name: "OKX", logo: okxLogo },
+    { name: "Opulous", logo: opulousLogo },
+    { name: "Space Catch", logo: spacecatchLogo },
+    { name: "Triangle", logo: triangleLogo },
+    { name: "UPX", logo: upxLogo },
+    { name: "XBO", logo: xboLogo },
+    { name: "Zetarium", logo: zetariumLogo },
+    { name: "Zkverify", logo: zkverifyLogo },
+];
 
 export default function PitchDeck() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -80,10 +138,10 @@ export default function PitchDeck() {
                     </div>
                     <div>
                         <div className="text-6xl md:text-7xl font-bold mb-2">100+</div>
-                        <div className="text-xl text-gray-400">PROJECTS</div>
+                        <div className="text-xl text-gray-400">CLIENTS</div>
                     </div>
                     <div>
-                        <div className="text-6xl md:text-7xl font-bold mb-2">5-20X</div>
+                        <div className="text-6xl md:text-7xl font-bold mb-2">5-30X</div>
                         <div className="text-xl text-gray-400">ROI AVERAGE</div>
                     </div>
                 </div>
@@ -100,11 +158,23 @@ export default function PitchDeck() {
             <div className="max-w-7xl w-full">
                 <h1 className="text-5xl md:text-7xl font-bold mb-16">Trusted by Our Partners</h1>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-                    {["Markchain", "Disence", "Artrade", "Gmedia", "Concordium", "Fatty", "LimeWire", "Lingo", "My Lovely Planet", "Opulous", "SpaceCatch"].map((partner, idx) => (
-                        <Card key={idx} className="p-8 bg-zinc-900/50 border-white/10 flex items-center justify-center hover:border-white/20 transition-all">
-                            <span className="text-xl font-bold text-center">{partner}</span>
-                        </Card>
+                <div className="grid grid-cols-3 md:grid-cols-6 gap-4 mb-12">
+                    {clients.map((client, idx) => (
+                        <div
+                            key={idx}
+                            className="group flex flex-col items-center justify-center p-4 rounded-lg border border-white/10 bg-zinc-900/50 hover:border-white/20 transition-all"
+                        >
+                            <div className="w-16 h-16 rounded-lg overflow-hidden flex items-center justify-center mb-3">
+                                <img
+                                    src={client.logo}
+                                    alt={client.name}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <span className="text-xs font-semibold text-center text-white/80">
+                                {client.name}
+                            </span>
+                        </div>
                     ))}
                 </div>
 
@@ -119,54 +189,84 @@ export default function PitchDeck() {
             <div className="max-w-7xl w-full">
                 <h1 className="text-5xl md:text-7xl font-bold mb-16">Our Services</h1>
 
-                <div className="grid md:grid-cols-3 gap-6 mb-12">
-                    <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
-                        <Users className="w-12 h-12 mb-6" />
-                        <h3 className="text-2xl font-bold mb-4">KOL Marketing</h3>
-                        <p className="text-gray-400">
-                            Only verified influencers with proven results
+                <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
+                    <Card className="p-6 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+                        <Megaphone className="w-10 h-10 mb-4" />
+                        <h3 className="text-lg font-bold mb-2">KOL Marketing</h3>
+                        <p className="text-gray-400 text-sm">
+                            Access to our network of 600+ verified influencers with proven track records.
                         </p>
                     </Card>
 
-                    <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
-                        <TrendingUp className="w-12 h-12 mb-6" />
-                        <h3 className="text-2xl font-bold mb-4">Token Value Creation</h3>
-                        <p className="text-gray-400">
-                            Strategic buy pressure that delivers 3X buy volume, zero risk
+                    <Card className="p-6 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+                        <TrendingUp className="w-10 h-10 mb-4" />
+                        <h3 className="text-lg font-bold mb-2">Token Value Creation</h3>
+                        <p className="text-gray-400 text-sm">
+                            Strategic buy pressure that delivers 3X buy volume.
                         </p>
                     </Card>
 
-                    <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
-                        <Newspaper className="w-12 h-12 mb-6" />
-                        <h3 className="text-2xl font-bold mb-4">PR & Media Marketing</h3>
-                        <p className="text-gray-400">
-                            Top crypto media, guaranteed coverage
+                    <Card className="p-6 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+                        <Users className="w-10 h-10 mb-4" />
+                        <h3 className="text-lg font-bold mb-2">Community Growth</h3>
+                        <p className="text-gray-400 text-sm">
+                            We cultivate quality Web3 community members, driving meaningful growth.
                         </p>
                     </Card>
 
-                    <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
-                        <div className="w-12 h-12 mb-6 flex items-center justify-center">
-                            <div className="text-3xl">🔄</div>
-                        </div>
-                        <h3 className="text-2xl font-bold mb-4">Tier-1 Exchange Listing</h3>
-                        <p className="text-gray-400">
-                            Direct access to Binance, OKX, and more
+                    <Card className="p-6 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+                        <Network className="w-10 h-10 mb-4" />
+                        <h3 className="text-lg font-bold mb-2">Community Management</h3>
+                        <p className="text-gray-400 text-sm">
+                            Expert channel moderation, interactive discussions, and engaging events.
                         </p>
                     </Card>
 
-                    <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
-                        <Handshake className="w-12 h-12 mb-6" />
-                        <h3 className="text-2xl font-bold mb-4">VC Network</h3>
-                        <p className="text-gray-400">
-                            Direct line to top VCs and investment groups
+                    <Card className="p-6 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+                        <Handshake className="w-10 h-10 mb-4" />
+                        <h3 className="text-lg font-bold mb-2">Partnership Management</h3>
+                        <p className="text-gray-400 text-sm">
+                            Strategic blockchain partnerships for long-term growth.
                         </p>
                     </Card>
 
-                    <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
-                        <Scale className="w-12 h-12 mb-6" />
-                        <h3 className="text-2xl font-bold mb-4">Market Making</h3>
-                        <p className="text-gray-400">
-                            Professional market making through trusted partners
+                    <Card className="p-6 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+                        <Newspaper className="w-10 h-10 mb-4" />
+                        <h3 className="text-lg font-bold mb-2">PR & Media Marketing</h3>
+                        <p className="text-gray-400 text-sm">
+                            Top crypto media, guaranteed coverage with major publications.
+                        </p>
+                    </Card>
+
+                    <Card className="p-6 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+                        <Building2 className="w-10 h-10 mb-4" />
+                        <h3 className="text-lg font-bold mb-2">Tier-1 Exchange Listing</h3>
+                        <p className="text-gray-400 text-sm">
+                            Direct access to Binance, OKX, Upbit and more.
+                        </p>
+                    </Card>
+
+                    <Card className="p-6 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+                        <Users className="w-10 h-10 mb-4" />
+                        <h3 className="text-lg font-bold mb-2">VC Network</h3>
+                        <p className="text-gray-400 text-sm">
+                            Direct line to top VCs and strategic investors.
+                        </p>
+                    </Card>
+
+                    <Card className="p-6 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+                        <ArrowUpRight className="w-10 h-10 mb-4" />
+                        <h3 className="text-lg font-bold mb-2">Market Making</h3>
+                        <p className="text-gray-400 text-sm">
+                            Professional market making for healthy liquidity.
+                        </p>
+                    </Card>
+
+                    <Card className="p-6 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+                        <Network className="w-10 h-10 mb-4" />
+                        <h3 className="text-lg font-bold mb-2">Asian Market</h3>
+                        <p className="text-gray-400 text-sm">
+                            Exclusive network of influential voices in China and Asia.
                         </p>
                     </Card>
                 </div>
@@ -195,7 +295,7 @@ export default function PitchDeck() {
                     <div className="text-6xl font-bold">→</div>
 
                     <Card className="p-12 bg-zinc-900/50 border-white/10">
-                        <div className="text-sm text-gray-400 mb-2">TOTAL MARKET ACTIVITY</div>
+                        <div className="text-sm text-gray-400 mb-2">TOTAL BUY PRESSURE</div>
                         <div className="text-6xl font-bold">$150K</div>
                     </Card>
                 </div>
@@ -231,10 +331,10 @@ export default function PitchDeck() {
                 </div>
 
                 <div className="mt-12">
-                    <h3 className="text-3xl font-bold mb-4">Sustainable Growth</h3>
+                    <h3 className="text-3xl font-bold mb-4">Disclaimer</h3>
                     <p className="text-gray-400 text-lg">
-                        Strategic investment patterns create healthy long-term price appreciation. Projects undergo
-                        strict filtering criteria to ensure quality and potential.
+                        Magnor is a marketing agency that provides services to projects in the crypto space. We are not
+                        responsible for the success or failure of any project.
                     </p>
                 </div>
             </div>
@@ -282,7 +382,7 @@ export default function PitchDeck() {
 
                 <div className="grid md:grid-cols-3 gap-12 text-center">
                     <div>
-                        <div className="text-6xl md:text-7xl font-bold mb-2">150+</div>
+                        <div className="text-6xl md:text-7xl font-bold mb-2">200+</div>
                         <div className="text-xl text-gray-400">PROJECTS</div>
                     </div>
                     <div>
@@ -360,8 +460,8 @@ export default function PitchDeck() {
                             key={idx}
                             onClick={() => setCurrentSlide(idx)}
                             className={`w-3 h-3 rounded-full transition-all ${idx === currentSlide
-                                    ? "bg-white w-8"
-                                    : "bg-white/30 hover:bg-white/50"
+                                ? "bg-white w-8"
+                                : "bg-white/30 hover:bg-white/50"
                                 }`}
                         />
                     ))}
