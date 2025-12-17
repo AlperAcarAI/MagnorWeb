@@ -2,7 +2,7 @@ module.exports = {
     "apps": [{
         "name": "magnorweb",
         "script": "dist/index.js",
-        "cwd": "/var/www/magnorweb",
+        "cwd": "/var/www/MagnorWeb",
         "instances": 1,
         "autorestart": true,
         "watch": false,
