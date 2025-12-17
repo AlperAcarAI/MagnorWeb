@@ -9,11 +9,13 @@ module.exports = {
         "max_memory_restart": "1G",
         "env": {
             "NODE_ENV": "production",
-            "PORT": "5001"
+            "PORT": "5001",
+            "DATABASE_URL": "postgresql://magnor_user:YOUR_PASSWORD@localhost/magnorweb"
         },
         "env_production": {
             "NODE_ENV": "production",
-            "PORT": "5001"
+            "PORT": "5001",
+            "DATABASE_URL": "postgresql://magnor_user:YOUR_PASSWORD@localhost/magnorweb"
         },
         "error_file": "/var/log/pm2/magnorweb-error.log",
         "out_file": "/var/log/pm2/magnorweb-out.log",
