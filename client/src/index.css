@@ -552,7 +552,7 @@
   }
 
   .animate-scroll-right {
-    animation: scrollRight 20s linear infinite;
+    animation: scrollRight 45s linear infinite;
   }
 
   .animate-scroll-right:hover {
@@ -560,7 +560,7 @@
   }
 
   .animate-scroll-right-delayed {
-    animation: scrollRight 25s linear infinite;
+    animation: scrollRight 50s linear infinite;
   }
 
   .animate-scroll-right-delayed:hover {
@@ -568,7 +568,7 @@
   }
 
   .animate-scroll-left {
-    animation: scrollLeft 20s linear infinite;
+    animation: scrollLeft 45s linear infinite;
   }
 
   .animate-scroll-left:hover {
@@ -576,7 +576,7 @@
   }
 
   .animate-scroll-left-delayed {
-    animation: scrollLeft 25s linear infinite;
+    animation: scrollLeft 50s linear infinite;
   }
 
   .animate-scroll-left-delayed:hover {

@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import magnorLogo from "@shared/Logo1.svg";
+import { useQuery } from "@tanstack/react-query";
 
 // Static logo imports
 import antixLogo from "/logos/Antix.png";
@@ -24,7 +25,6 @@ import bitgetLogo from "/logos/Bitget.png";
 import cmediaLogo from "/logos/CMedia.jpeg";
 import castrumLogo from "/logos/Castrum Capital.jpg";
 import coinscoutLogo from "/logos/Coinscout.jpg";
-import concordiumLogo from "/logos/Concordium.png";
 import disenceLogo from "/logos/Disence.jpg";
 import fattyLogo from "/logos/Fatty.png";
 import kolzLogo from "/logos/KOLZ.png";
@@ -42,6 +42,33 @@ import xboLogo from "/logos/XBO.png";
 import zetariumLogo from "/logos/Zetarium.png";
 import zkverifyLogo from "/logos/Zkverify.png";
 
+// Static KOL Ecosystem list with profile images
+// YouTube kullanıcıları için Twitter hesapları üzerinden avatar çekiliyor
+const kolEcosystem = [
+  { name: "rorovevo", handle: "@rorovevo", platform: "youtube", link: "https://www.youtube.com/@rorovevo", avatar: "https://unavatar.io/twitter/rorovevo" },
+  { name: "The House Of Crypto", handle: "@TheHouseOfCrypto", platform: "youtube", link: "https://www.youtube.com/@TheHouseOfCrypto", avatar: "https://unavatar.io/twitter/THouseOfCrypto" },
+  { name: "Umut Aktu Kripto", handle: "@UmutAktuKripto", platform: "youtube", link: "https://www.youtube.com/@Umut-Aktu", avatar: "https://unavatar.io/twitter/UmutAktu" },
+  { name: "Tarık Bilen", handle: "@tarikbilenn", platform: "youtube", link: "https://www.youtube.com/@tarikbilenn", avatar: "https://unavatar.io/twitter/TarikBln" },
+  { name: "Les Rois du Bitcoin", handle: "@lesroisdubitcoin", platform: "youtube", link: "https://www.youtube.com/@lesroisdubitcoin", avatar: "https://unavatar.io/youtube/lesroisdubitcoin" },
+  { name: "Rover", handle: "@CryptoRover", platform: "youtube", link: "https://www.youtube.com/@CryptoRover/", avatar: "https://unavatar.io/youtube/cryptorover" },
+  { name: "Edu Heras", handle: "@eduheras", platform: "youtube", link: "https://www.youtube.com/@eduheras", avatar: "https://unavatar.io/twitter/eduheras" },
+  { name: "Sheldon Sniper", handle: "@Sheldon_Sniper", platform: "twitter", link: "https://twitter.com/Sheldon_Sniper", avatar: "https://unavatar.io/twitter/Sheldon_Sniper" },
+  { name: "Crypto Genzo", handle: "@CryptoGenzo", platform: "twitter", link: "https://twitter.com/CryptoGenzo", avatar: "https://unavatar.io/twitter/CryptoGenzo" },
+  { name: "Kripto Kraliyeni", handle: "@kriptokraliyeni", platform: "twitter", link: "https://x.com/kriptokraliyeni", avatar: "https://unavatar.io/twitter/kriptokraliyeni" },
+  { name: "Crypto Wizard", handle: "@0xcryptowizard", platform: "twitter", link: "https://x.com/0xcryptowizard", avatar: "https://unavatar.io/twitter/0xcryptowizard" },
+  { name: "SunNFT", handle: "@0xSunNFT", platform: "twitter", link: "https://x.com/0xSunNFT", avatar: "https://unavatar.io/twitter/0xSunNFT" },
+  { name: "Tagado", handle: "@TagadoBTC", platform: "twitter", link: "https://x.com/TagadoBTC", avatar: "https://unavatar.io/twitter/TagadoBTC" },
+  { name: "Veli Mutlu", handle: "@vemutlu", platform: "twitter", link: "https://x.com/vemutlu", avatar: "https://unavatar.io/twitter/vemutlu" },
+  { name: "Kriptokrat", handle: "@kriptokrat5", platform: "twitter", link: "https://x.com/kriptokrat5", avatar: "https://unavatar.io/twitter/kriptokrat5" },
+  { name: "Vforr Kripto", handle: "@Vforrkripto", platform: "twitter", link: "https://x.com/Vforrkripto", avatar: "https://unavatar.io/twitter/Vforrkripto" },
+  { name: "Kripto Chef", handle: "@KriptoChef", platform: "twitter", link: "https://x.com/KriptoChef", avatar: "https://unavatar.io/twitter/KriptoChef" },
+  { name: "Para Hub", handle: "@para_hub", platform: "youtube", link: "https://www.youtube.com/@para_hub", avatar: "https://unavatar.io/twitter/parahub_" },
+  { name: "Nuh Batuhan", handle: "@nuhbatuhann", platform: "twitter", link: "https://x.com/nuhbatuhann", avatar: "https://unavatar.io/twitter/nuhbatuhann" },
+  { name: "DaVinciJ15", handle: "@davincij15", platform: "youtube", link: "https://www.youtube.com/@davincij15", avatar: "https://unavatar.io/twitter/davincij15" },
+  { name: "Hasheur", handle: "@Hasheur", platform: "youtube", link: "https://www.youtube.com/@Hasheur", avatar: "https://unavatar.io/twitter/Hasheur" },
+  { name: "Tikooww", handle: "@tikooww", platform: "twitter", link: "https://x.com/tikooww", avatar: "https://unavatar.io/twitter/tikooww" },
+];
+
 // Static clients list with logos
 const clients = [
   { name: "Antix", logo: antixLogo },
@@ -51,7 +78,6 @@ const clients = [
   { name: "CMedia", logo: cmediaLogo },
   { name: "Castrum Capital", logo: castrumLogo },
   { name: "Coinscout", logo: coinscoutLogo },
-  { name: "Concordium", logo: concordiumLogo },
   { name: "Disence", logo: disenceLogo },
   { name: "Fatty", logo: fattyLogo },
   { name: "KOLZ", logo: kolzLogo },
@@ -71,6 +97,49 @@ const clients = [
 ];
 
 export default function Home() {
+  // Fetch KOLs from database
+  const { data: kolsData } = useQuery({
+    queryKey: ['/api/kols'],
+    queryFn: async () => {
+      const response = await fetch('/api/kols');
+      if (!response.ok) throw new Error('Failed to fetch KOLs');
+      return response.json();
+    },
+  });
+
+  // Extract KOL network data with Twitter info
+  const kolNetwork = kolsData?.kols?.map((kol: any) => {
+    // Find Twitter social media account
+    const twitterAccount = kol.socialMedia?.find(
+      (sm: any) => sm.socialMedia?.name?.toLowerCase() === 'twitter' || 
+                   sm.socialMedia?.name?.toLowerCase() === 'x'
+    );
+    
+    // Extract username from Twitter link
+    let handle = '';
+    let username = '';
+    if (twitterAccount?.link) {
+      const match = twitterAccount.link.match(/(?:twitter\.com|x\.com)\/(@?[\w]+)/);
+      if (match) {
+        username = match[1].replace('@', '');
+        handle = `@${username}`;
+      }
+    }
+
+    // Generate avatar URL from Twitter username (with fallback)
+    const avatar = username 
+      ? `https://unavatar.io/twitter/${username}?fallback=https://ui-avatars.com/api/?name=${encodeURIComponent(kol.name)}&background=8b5cf6&color=fff&size=128`
+      : `https://ui-avatars.com/api/?name=${encodeURIComponent(kol.name)}&background=8b5cf6&color=fff&size=128`;
+
+    return {
+      name: kol.name,
+      handle: handle || '@unknown',
+      twitterLink: twitterAccount?.link || '',
+      avatar: avatar,
+      verified: twitterAccount?.verified || false,
+      followerCount: twitterAccount?.followerCount || 0,
+    };
+  }).filter((kol: any) => kol.twitterLink) || []; // Only show KOLs with Twitter accounts
 
   const scrollToSection = (sectionId: string) => {
     const element = document.querySelector(
@@ -218,51 +287,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section with Flowing Logos */}
+      {/* Trusted By Section */}
       <section className="py-32 px-6 relative overflow-hidden" data-section="clients">
-        <div className="max-w-6xl mx-auto text-center relative">
-
-          <div>
-            <Badge
-              variant="outline"
-              className="mb-12 border-white/20 text-white/80 bg-white/5"
-            >
-              TRUSTED BY
-            </Badge>
-          </div>
-          {/* Top flowing row - moving right */}
-          <div className="mb-12 relative z-10">
-            <div className="flex gap-4 animate-scroll-right">
-              {[...clients, ...clients].map((client, index) => (
-                <div
-                  key={`top-${index}`}
-                  className="group flex-shrink-0 w-16 h-16 rounded-lg border border-white/10 flex flex-col items-center justify-center transition-all duration-300 hover:scale-[2] cursor-pointer overflow-visible relative hover:z-50"
-                >
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-xl z-0"></div>
-                  <div className="flex flex-col items-center justify-center w-full h-full">
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="relative z-20 w-full h-full object-cover"
-                    />
+        <div className="max-w-6xl mx-auto relative">
+          
+          {/* CLIENTS AND PARTNERS Section */}
+          <div className="mb-32">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+              <h3 className="text-sm font-semibold tracking-wider text-white uppercase">
+                CLIENTS AND PARTNERS
+              </h3>
+            </div>
+            
+            {/* Scrolling row - moving right */}
+            <div className="relative z-10 overflow-hidden">
+              <div className="flex gap-6 animate-scroll-right" style={{ width: 'max-content' }}>
+                {[...clients, ...clients].map((client, index) => (
+                  <div
+                    key={`client-${index}`}
+                    className="group flex-shrink-0 bg-zinc-900/30 rounded-2xl border border-white/10 p-4 hover:border-white/30 transition-all duration-300 hover:scale-110 cursor-pointer w-24 h-24"
+                  >
+                    <div className="w-full h-full flex items-center justify-center">
+                      <img
+                        src={client.logo}
+                        alt={client.name}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
+                      <span className="text-xs font-semibold text-white bg-black/90 px-3 py-1.5 rounded-lg">
+                        {client.name}
+                      </span>
+                    </div>
                   </div>
-                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                    <span className="text-xs font-semibold text-white bg-black/80 px-2 py-1 rounded">
-                      {client.name}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Center content */}
-
-          <div className="my-16">
-
-
-            {/* 3D Rotating Stats Cube */}
-            <div className="stat-cube mt-16">
+          {/* 3D Rotating Stats Cube */}
+          <div className="my-32 flex justify-center items-center">
+            <div className="stat-cube">
               <div className="stat-cube-inner">
                 {/* Front Face */}
                 <div className="stat-face stat-face-front">
@@ -291,32 +357,69 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bottom flowing row - moving left */}
-          <div className="mt-24 relative z-10">
-            <div className="flex gap-4 animate-scroll-left">
-              {[...clients, ...clients].map((client, index) => (
-                <div
-                  key={`bottom-${index}`}
-                  className="group flex-shrink-0 w-16 h-16 rounded-lg border border-white/10 flex flex-col items-center justify-center transition-all duration-300 hover:scale-[2] cursor-pointer overflow-visible relative hover:z-50"
-                >
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-xl z-0"></div>
-                  <div className="flex flex-col items-center justify-center w-full h-full">
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="relative z-20 w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                    <span className="text-xs font-semibold text-white bg-black/80 px-2 py-1 rounded">
-                      {client.name}
-                    </span>
-                  </div>
-                </div>
-              ))}
+          {/* KOL NETWORK Section */}
+          <div className="mt-24">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+              <h3 className="text-sm font-semibold tracking-wider text-white uppercase">
+                Our KOL Ecosystem
+              </h3>
+            </div>
+            
+            {/* Scrolling row - moving left */}
+            <div className="relative z-10 overflow-hidden">
+              <div className="flex gap-6 animate-scroll-left" style={{ width: 'max-content' }}>
+                {[...kolEcosystem, ...kolEcosystem].map((kol, index) => (
+                  <a
+                    key={`kol-${index}`}
+                    href={kol.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex-shrink-0 bg-zinc-900/30 rounded-2xl border border-white/10 p-4 hover:border-white/30 transition-all duration-300 hover:scale-110 cursor-pointer w-32"
+                  >
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="relative">
+                        <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/20">
+                          <img
+                            src={kol.avatar}
+                            alt={kol.name}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(kol.name)}&background=8b5cf6&color=fff&size=128`;
+                            }}
+                          />
+                        </div>
+                        {kol.platform === "youtube" && (
+                          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-red-600 rounded-full flex items-center justify-center border-2 border-zinc-900">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                            </svg>
+                          </div>
+                        )}
+                        {kol.platform === "twitter" && (
+                          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-black rounded-full flex items-center justify-center border-2 border-zinc-900">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                          </div>
+                        )}
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs font-semibold text-white truncate w-full">{kol.name}</p>
+                        <p className="text-xs text-gray-400 truncate w-full">{kol.handle}</p>
+                      </div>
+                    </div>
+                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
+                      <span className="text-xs font-semibold text-white bg-black/90 px-3 py-1.5 rounded-lg">
+                        {kol.platform === "youtube" ? "View on YouTube" : "View on X (Twitter)"}
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-
 
         </div>
       </section>
@@ -338,10 +441,14 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80">
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80 overflow-hidden">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
-                  <Megaphone className="w-8 h-8" />
+                <div className="w-full h-40 rounded-xl overflow-hidden mb-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=600&h=300&fit=crop&q=80" 
+                    alt="KOL Marketing" 
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">
@@ -352,10 +459,14 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80">
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80 overflow-hidden">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
-                  <TrendingUp className="w-8 h-8" />
+                <div className="w-full h-40 rounded-xl overflow-hidden mb-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=600&h=300&fit=crop&q=80" 
+                    alt="Token Value Creation" 
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">
@@ -366,10 +477,14 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80">
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80 overflow-hidden">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
-                  <Users className="w-8 h-8" />
+                <div className="w-full h-40 rounded-xl overflow-hidden mb-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=300&fit=crop&q=80" 
+                    alt="Community Growth" 
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">
@@ -380,10 +495,14 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80">
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80 overflow-hidden">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
-                  <Network className="w-8 h-8" />
+                <div className="w-full h-40 rounded-xl overflow-hidden mb-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop&q=80" 
+                    alt="Community Management" 
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">
@@ -394,10 +513,14 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80">
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80 overflow-hidden">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
-                  <TrendingUp className="w-8 h-8" />
+                <div className="w-full h-40 rounded-xl overflow-hidden mb-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=300&fit=crop&q=80" 
+                    alt="Partnership Management" 
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">
@@ -408,10 +531,14 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80 overflow-hidden">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
-                  <Newspaper className="w-8 h-8" />
+                <div className="w-full h-40 rounded-xl overflow-hidden mb-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&h=300&fit=crop&q=80" 
+                    alt="PR & Media Marketing" 
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">
@@ -422,10 +549,14 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80 overflow-hidden">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
-                  <Building2 className="w-8 h-8" />
+                <div className="w-full h-40 rounded-xl overflow-hidden mb-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=300&fit=crop&q=80" 
+                    alt="Tier-1 Exchange Listing" 
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">
@@ -436,10 +567,14 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80 overflow-hidden">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
-                  <Users className="w-8 h-8" />
+                <div className="w-full h-40 rounded-xl overflow-hidden mb-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=300&fit=crop&q=80" 
+                    alt="VC Network" 
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">
@@ -450,10 +585,14 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80 overflow-hidden">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
-                  <ArrowUpRight className="w-8 h-8" />
+                <div className="w-full h-40 rounded-xl overflow-hidden mb-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&h=300&fit=crop&q=80" 
+                    alt="Market Making" 
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">
@@ -464,10 +603,14 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all">
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all hover:bg-zinc-900/80 overflow-hidden">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white mb-4">
-                  <Network className="w-8 h-8" />
+                <div className="w-full h-40 rounded-xl overflow-hidden mb-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1480796927426-f609979314bd?w=600&h=300&fit=crop&q=80" 
+                    alt="Asian Market" 
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">
@@ -481,6 +624,150 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* FAQ Section */}
+      <section className="py-32 px-6" data-section="faq">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge
+              variant="outline"
+              className="mb-8 border-white/20 text-white/80 bg-white/5"
+            >
+              FAQ
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <div className="space-y-8">
+            {/* Strategy & Approach */}
+            <div>
+              <h3 className="text-xl font-bold text-purple-400 mb-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+                Strategy & Approach
+              </h3>
+              <div className="space-y-4">
+                <details className="group bg-zinc-900/50 rounded-xl border border-white/10 overflow-hidden">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 transition-colors">
+                    <span className="font-semibold text-white">What sets Magnor apart?</span>
+                    <span className="text-purple-400 group-open:rotate-180 transition-transform">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    We view you as a partner, not just a client, standing by your side at every stage of the marketing lifecycle. Beyond speaking fluent Web3, our long-standing relationships with top KOLs have built a unique level of trust and leverage, giving your project unmatched credibility that standard agencies simply can't offer.
+                  </div>
+                </details>
+
+                <details className="group bg-zinc-900/50 rounded-xl border border-white/10 overflow-hidden">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 transition-colors">
+                    <span className="font-semibold text-white">How do you handle token launches?</span>
+                    <span className="text-purple-400 group-open:rotate-180 transition-transform">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    We manage the entire lifecycle. If you are preparing for an ICO, IDO, or TGE, we engineer the necessary pre-launch momentum to attract high-value investors and genuine token holders before you go live.
+                  </div>
+                </details>
+
+                <details className="group bg-zinc-900/50 rounded-xl border border-white/10 overflow-hidden">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 transition-colors">
+                    <span className="font-semibold text-white">Do you prioritize hype or sustainability?</span>
+                    <span className="text-purple-400 group-open:rotate-180 transition-transform">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    We build for longevity. While we are experts at generating immediate buzz, our core focus is on sustainable growth strategies and authentic community building to ensure your project thrives long after the initial hype cycle.
+                  </div>
+                </details>
+              </div>
+            </div>
+
+            {/* Execution & Results */}
+            <div>
+              <h3 className="text-xl font-bold text-purple-400 mb-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+                Execution & Results
+              </h3>
+              <div className="space-y-4">
+                <details className="group bg-zinc-900/50 rounded-xl border border-white/10 overflow-hidden">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 transition-colors">
+                    <span className="font-semibold text-white">How do you determine the marketing mix?</span>
+                    <span className="text-purple-400 group-open:rotate-180 transition-transform">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    We reject "cookie-cutter" solutions. Based on your specific roadmap, we deploy a strategic mix of SEO, PPC, PR, and high-impact influencer marketing to maximize ROI for your niche.
+                  </div>
+                </details>
+
+                <details className="group bg-zinc-900/50 rounded-xl border border-white/10 overflow-hidden">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 transition-colors">
+                    <span className="font-semibold text-white">How is performance measured?</span>
+                    <span className="text-purple-400 group-open:rotate-180 transition-transform">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    We rely on data, not guesses. We track transparent KPIs—community growth, on-chain activity, and engagement rates—providing you with clear reports so you can verify the impact yourself.
+                  </div>
+                </details>
+
+                <details className="group bg-zinc-900/50 rounded-xl border border-white/10 overflow-hidden">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 transition-colors">
+                    <span className="font-semibold text-white">How fast can we deploy?</span>
+                    <span className="text-purple-400 group-open:rotate-180 transition-transform">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    Our process is streamlined for speed. We start with a focused discovery phase to align on strategy, then immediately execute a custom roadmap tailored to your launch or growth targets.
+                  </div>
+                </details>
+              </div>
+            </div>
+
+            {/* Budget */}
+            <div>
+              <h3 className="text-xl font-bold text-purple-400 mb-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+                Budget
+              </h3>
+              <div className="space-y-4">
+                <details className="group bg-zinc-900/50 rounded-xl border border-white/10 overflow-hidden">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 transition-colors">
+                    <span className="font-semibold text-white">How is your pricing structured?</span>
+                    <span className="text-purple-400 group-open:rotate-180 transition-transform">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    We don't use fixed packages because every project has different needs. Our pricing is custom-quoted based on the scope, ensuring you only pay for the services that drive your specific goals.
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials Section */}
       <section className="py-32 px-6" data-section="testimonials">
