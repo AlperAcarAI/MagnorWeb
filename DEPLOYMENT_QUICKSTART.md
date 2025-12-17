@@ -57,7 +57,7 @@ psql -U magnor_user -d magnorweb -h localhost -c "SELECT COUNT(*) FROM users;"
 ```
 
 ### 4. Tarayıcıdan Test Et
-- URL: `http://SUNUCU_IP:5001`
+- URL: `http://SUNUCU_IP:5000`
 - Kullanıcı: `admin`
 - Şifre: `Magnor*54`
 
@@ -81,7 +81,7 @@ Bu kadar! 🎉
 - **PostgreSQL Şifresi:** Kurulum sırasında belirlediğiniz şifreyi güvenli bir yerde saklayın
 - **Admin Şifresi:** Varsayılan `Magnor*54` - İlk girişten sonra değiştirin
 - **.env Dosyası:** Sunucuda otomatik oluşturulur
-- **Firewall:** Port 5001 otomatik açılır
+- **Firewall:** Port 5000 otomatik açılır
 
 ---
 
@@ -103,7 +103,7 @@ psql -U magnor_user -d magnorweb -h localhost
 
 **Port erişim sorunu:**
 ```bash
-sudo ufw allow 5001
+sudo ufw allow 5000
 ```
 
 ---

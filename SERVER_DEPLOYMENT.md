@@ -80,7 +80,7 @@ pm2 status
 pm2 logs magnorweb
 
 # Uygulamaya tarayıcıdan eriş:
-# http://SUNUCU_IP:5001
+# http://SUNUCU_IP:5000
 ```
 
 **Giriş Bilgileri:**
@@ -198,7 +198,7 @@ server {
     server_name your-domain.com;  # Domain adınız veya IP
 
     location / {
-        proxy_pass http://localhost:5001;
+        proxy_pass http://localhost:5000;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -288,16 +288,16 @@ sudo -u postgres psql -c "\du" | grep magnor_user
 psql -U magnor_user -d magnorweb -h localhost
 ```
 
-### Port 5001'e erişilemiyor
+### Port 5000'e erişilemiyor
 ```bash
 # Firewall kontrolü
 sudo ufw status
 
 # Port'u aç
-sudo ufw allow 5001
+sudo ufw allow 5000
 
 # Uygulama dinliyor mu?
-netstat -tlnp | grep 5001
+netstat -tlnp | grep 5000
 ```
 
 ### Build hataları

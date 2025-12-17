@@ -114,7 +114,7 @@ echo ""
 echo "8️⃣  .env dosyası oluşturuluyor..."
 cat > .env << EOF
 NODE_ENV=production
-PORT=5001
+PORT=5000
 DATABASE_URL=postgresql://$DB_USER:$DB_PASSWORD@localhost:5432/$DB_NAME
 EOF
 success ".env dosyası oluşturuldu"
@@ -166,8 +166,8 @@ echo ""
 
 echo "1️⃣3️⃣  Firewall ayarları..."
 if command -v ufw &> /dev/null; then
-    ufw allow 5001 || true
-    success "Port 5001 açıldı"
+    ufw allow 5000 || true
+    success "Port 5000 açıldı"
 fi
 echo ""
 
@@ -186,7 +186,7 @@ echo "   Username: admin"
 echo "   Password: Magnor*54"
 echo ""
 echo "🌐 Uygulama:"
-echo "   URL: http://localhost:5001"
+echo "   URL: http://localhost:5000"
 echo ""
 echo "📊 PM2 Komutları:"
 echo "   pm2 status"
