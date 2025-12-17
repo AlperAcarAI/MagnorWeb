@@ -76,7 +76,7 @@ server {
     server_name your-domain.com;
 
     location / {
-        proxy_pass http://localhost:5000;
+        proxy_pass http://localhost:5001;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -139,11 +139,11 @@ pm2 status
    pm2 restart magnorweb
    ```
 
-### Port 5000'e Erişilemiyor:
+### Port 5001'e Erişilemiyor:
 ```bash
 # Firewall kontrol
 ufw status
-ufw allow 5000
+ufw allow 5001
 ```
 
 ## Ortam Değişkenleri (.env)
@@ -156,7 +156,7 @@ nano /var/www/magnorweb/.env
 Gerekli environment variables:
 ```env
 NODE_ENV=production
-PORT=5000
+PORT=5001
 DATABASE_URL=your_database_url
 ```
 

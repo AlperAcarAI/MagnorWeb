@@ -9,11 +9,11 @@ module.exports = {
         "max_memory_restart": "1G",
         "env": {
             "NODE_ENV": "production",
-            "PORT": "5000"
+            "PORT": "5001"
         },
         "env_production": {
             "NODE_ENV": "production",
-            "PORT": "5000"
+            "PORT": "5001"
         },
         "error_file": "/var/log/pm2/magnorweb-error.log",
         "out_file": "/var/log/pm2/magnorweb-out.log",

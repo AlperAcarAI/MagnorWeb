@@ -57,7 +57,7 @@ cp .env.production.example .env
 .env dosyasını düzenleyin:
 ```env
 NODE_ENV=development
-PORT=5000
+PORT=5001
 DATABASE_URL=postgresql://postgres:password@localhost:5432/magnorweb
 ```
 
@@ -87,7 +87,7 @@ npx tsx scripts/update-admin-password.ts
 npm run dev
 ```
 
-Uygulama `http://localhost:5000` adresinde çalışacak.
+Uygulama `http://localhost:5001` adresinde çalışacak.
 
 **Varsayılan giriş bilgileri:**
 - Kullanıcı adı: `admin`
