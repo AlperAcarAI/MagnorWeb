@@ -454,7 +454,7 @@ export default function Home() {
               <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-purple-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl group-hover:bg-orange-500/10 transition-all duration-500"></div>
                 <Badge className="mb-4 bg-orange-600/20 text-orange-400 border-orange-500/30">
-                  5-year collab
+                  Full Scale Dedicated Campaign
                 </Badge>
                 <h3 className="text-4xl font-bold mb-6 text-white">MLC</h3>
                 <ul className="space-y-3 text-gray-300">
@@ -479,7 +479,7 @@ export default function Home() {
               <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-blue-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-all duration-500"></div>
                 <Badge className="mb-4 bg-blue-600/20 text-blue-400 border-blue-500/30">
-                  Pre-TOE campaign
+                  Brand Awareness | Token Growth
                 </Badge>
                 <h3 className="text-4xl font-bold mb-6 text-white">ATR</h3>
                 <ul className="space-y-3 text-gray-300">
@@ -504,7 +504,7 @@ export default function Home() {
               <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-purple-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl group-hover:bg-purple-500/10 transition-all duration-500"></div>
                 <Badge className="mb-4 bg-purple-600/20 text-purple-400 border-purple-500/30">
-                  Strategic campaign
+                  Brand Awareness | Token Growth
                 </Badge>
                 <h3 className="text-4xl font-bold mb-6 text-white">Opulous</h3>
                 <ul className="space-y-3 text-gray-300">
@@ -529,7 +529,7 @@ export default function Home() {
               <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-green-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/10 transition-all duration-500"></div>
                 <Badge className="mb-4 bg-green-600/20 text-green-400 border-green-500/30">
-                  Influencer network
+                  Brand Awareness
                 </Badge>
                 <h3 className="text-4xl font-bold mb-6 text-white">SNSY</h3>
                 <ul className="space-y-3 text-gray-300">
@@ -554,7 +554,7 @@ export default function Home() {
               <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-cyan-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-all duration-500"></div>
                 <Badge className="mb-4 bg-cyan-600/20 text-cyan-400 border-cyan-500/30">
-                  Launch campaign
+                  Pre/Post-TGE Campaign
                 </Badge>
                 <h3 className="text-4xl font-bold mb-6 text-white">CLONE</h3>
                 <ul className="space-y-3 text-gray-300">
@@ -579,7 +579,7 @@ export default function Home() {
               <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-red-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full blur-3xl group-hover:bg-red-500/10 transition-all duration-500"></div>
                 <Badge className="mb-4 bg-red-600/20 text-red-400 border-red-500/30">
-                  Pre-sale campaign
+                  Pre-Sale
                 </Badge>
                 <h3 className="text-4xl font-bold mb-6 text-white">Antix</h3>
                 <ul className="space-y-3 text-gray-300">
@@ -612,7 +612,7 @@ export default function Home() {
               <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-yellow-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl group-hover:bg-yellow-500/10 transition-all duration-500"></div>
                 <Badge className="mb-4 bg-yellow-600/20 text-yellow-400 border-yellow-500/30">
-                  Hype management
+                  Hype Management | Pre-Sale
                 </Badge>
                 <h3 className="text-4xl font-bold mb-6 text-white">Fatty</h3>
                 <ul className="space-y-3 text-gray-300">
@@ -641,7 +641,7 @@ export default function Home() {
               <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-pink-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/5 rounded-full blur-3xl group-hover:bg-pink-500/10 transition-all duration-500"></div>
                 <Badge className="mb-4 bg-pink-600/20 text-pink-400 border-pink-500/30">
-                  Zero to Hero
+                  Pre-Sale
                 </Badge>
                 <h3 className="text-4xl font-bold mb-6 text-white">Runwago</h3>
                 <ul className="space-y-3 text-gray-300">
