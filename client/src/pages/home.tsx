@@ -212,6 +212,12 @@ export default function Home() {
             {/* Navigation */}
             <nav className="hidden md:flex items-center gap-8">
               <button
+                onClick={() => scrollToSection("cases")}
+                className="text-sm text-gray-400 hover:text-white transition-colors"
+              >
+                Cases
+              </button>
+              <button
                 onClick={() => scrollToSection("services")}
                 className="text-sm text-gray-400 hover:text-white transition-colors"
               >
@@ -424,6 +430,264 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* Cases Section */}
+      <section className="py-32 px-6 relative overflow-hidden" data-section="cases">
+        <div className="max-w-7xl mx-auto relative">
+          {/* Background decorative elements */}
+          <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+          
+          <div className="text-center mb-20 relative">
+            <h2 className="text-6xl md:text-8xl font-bold mb-4 text-white/90">
+              Cases
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Execution is the only truth
+            </p>
+          </div>
+
+          {/* Cases Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+            {/* MLC */}
+            <a href="https://x.com/MyLovelyPlanet1" target="_blank" rel="noopener noreferrer" className="h-full">
+              <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-purple-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl group-hover:bg-orange-500/10 transition-all duration-500"></div>
+                <Badge className="mb-4 bg-orange-600/20 text-orange-400 border-orange-500/30">
+                  5-year collab
+                </Badge>
+                <h3 className="text-4xl font-bold mb-6 text-white">MLC</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-orange-400 mt-1">●</span>
+                    <span>10.2M+ Total Impressions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-orange-400 mt-1">●</span>
+                    <span>5–7× Average ROI</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-orange-400 mt-1">●</span>
+                    <span>60+ KOL launch</span>
+                  </li>
+                </ul>
+              </Card>
+            </a>
+
+            {/* ATR */}
+            <a href="https://x.com/ArtradeApp" target="_blank" rel="noopener noreferrer" className="h-full">
+              <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-blue-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-all duration-500"></div>
+                <Badge className="mb-4 bg-blue-600/20 text-blue-400 border-blue-500/30">
+                  Pre-TOE campaign
+                </Badge>
+                <h3 className="text-4xl font-bold mb-6 text-white">ATR</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400 mt-1">●</span>
+                    <span>2.8M+ Total Impressions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400 mt-1">●</span>
+                    <span>38K+ Community Interactions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-400 mt-1">●</span>
+                    <span>4–6× Average ROI</span>
+                  </li>
+                </ul>
+              </Card>
+            </a>
+
+            {/* Opulous */}
+            <a href="https://x.com/opulousapp" target="_blank" rel="noopener noreferrer" className="h-full">
+              <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-purple-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl group-hover:bg-purple-500/10 transition-all duration-500"></div>
+                <Badge className="mb-4 bg-purple-600/20 text-purple-400 border-purple-500/30">
+                  Strategic campaign
+                </Badge>
+                <h3 className="text-4xl font-bold mb-6 text-white">Opulous</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-400 mt-1">●</span>
+                    <span>5.5M+ Total Impressions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-400 mt-1">●</span>
+                    <span>4–6× Average ROI</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-400 mt-1">●</span>
+                    <span>30K+ Community Interactions</span>
+                  </li>
+                </ul>
+              </Card>
+            </a>
+
+            {/* SNSY */}
+            <a href="https://x.com/asksensay" target="_blank" rel="noopener noreferrer" className="h-full">
+              <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-green-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/10 transition-all duration-500"></div>
+                <Badge className="mb-4 bg-green-600/20 text-green-400 border-green-500/30">
+                  Influencer network
+                </Badge>
+                <h3 className="text-4xl font-bold mb-6 text-white">SNSY</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-400 mt-1">●</span>
+                    <span>1.1M+ Total Impressions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-400 mt-1">●</span>
+                    <span>4× ROI achievement</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-400 mt-1">●</span>
+                    <span>30K+ Community Interactions</span>
+                  </li>
+                </ul>
+              </Card>
+            </a>
+
+            {/* CLONE */}
+            <a href="https://x.com/ConfidentialLyr" target="_blank" rel="noopener noreferrer" className="h-full">
+              <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-cyan-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-all duration-500"></div>
+                <Badge className="mb-4 bg-cyan-600/20 text-cyan-400 border-cyan-500/30">
+                  Launch campaign
+                </Badge>
+                <h3 className="text-4xl font-bold mb-6 text-white">CLONE</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-400 mt-1">●</span>
+                    <span>1.8M+ Total Impressions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-400 mt-1">●</span>
+                    <span>50K+ Community Interactions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-400 mt-1">●</span>
+                    <span>5× Post/Pre-launch growth</span>
+                  </li>
+                </ul>
+              </Card>
+            </a>
+
+            {/* Antix */}
+            <a href="https://x.com/antix_in" target="_blank" rel="noopener noreferrer" className="h-full">
+              <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-red-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full blur-3xl group-hover:bg-red-500/10 transition-all duration-500"></div>
+                <Badge className="mb-4 bg-red-600/20 text-red-400 border-red-500/30">
+                  Pre-sale campaign
+                </Badge>
+                <h3 className="text-4xl font-bold mb-6 text-white">Antix</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-400 mt-1">●</span>
+                    <span>1.8M+ Total Impressions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-400 mt-1">●</span>
+                    <span>50K+ Community Interactions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-400 mt-1">●</span>
+                    <span>Global brand awareness</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-400 mt-1">●</span>
+                    <span>Strategic narrative positioning</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-400 mt-1">●</span>
+                    <span>30+ KOL launch</span>
+                  </li>
+                </ul>
+              </Card>
+            </a>
+
+            {/* Fatty */}
+            <a href="https://x.com/fatty_io" target="_blank" rel="noopener noreferrer" className="h-full">
+              <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-yellow-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl group-hover:bg-yellow-500/10 transition-all duration-500"></div>
+                <Badge className="mb-4 bg-yellow-600/20 text-yellow-400 border-yellow-500/30">
+                  Hype management
+                </Badge>
+                <h3 className="text-4xl font-bold mb-6 text-white">Fatty</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-400 mt-1">●</span>
+                    <span>1.5M+ Total Impressions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-400 mt-1">●</span>
+                    <span>300% Community growth</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-400 mt-1">●</span>
+                    <span>20+ KOL launch</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-400 mt-1">●</span>
+                    <span>Early-stage hype management</span>
+                  </li>
+                </ul>
+              </Card>
+            </a>
+
+            {/* Runwago */}
+            <a href="https://x.com/runwago" target="_blank" rel="noopener noreferrer" className="h-full">
+              <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-pink-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/5 rounded-full blur-3xl group-hover:bg-pink-500/10 transition-all duration-500"></div>
+                <Badge className="mb-4 bg-pink-600/20 text-pink-400 border-pink-500/30">
+                  Zero to Hero
+                </Badge>
+                <h3 className="text-4xl font-bold mb-6 text-white">Runwago</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-pink-400 mt-1">●</span>
+                    <span>900K+ Total Impressions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-pink-400 mt-1">●</span>
+                    <span>15+ KOL launch</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-pink-400 mt-1">●</span>
+                    <span>50K+ Community Interactions</span>
+                  </li>
+                </ul>
+              </Card>
+            </a>
+
+            {/* Lingo */}
+            <a href="https://x.com/Lingocoins" target="_blank" rel="noopener noreferrer" className="h-full">
+              <Card className="group relative p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border-white/10 hover:border-indigo-500/50 transition-all duration-500 hover:scale-105 overflow-hidden cursor-pointer h-full flex flex-col">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl group-hover:bg-indigo-500/10 transition-all duration-500"></div>
+                <Badge className="mb-4 bg-indigo-600/20 text-indigo-400 border-indigo-500/30">
+                  Token Growth
+                </Badge>
+                <h3 className="text-4xl font-bold mb-6 text-white">Lingo</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-indigo-400 mt-1">●</span>
+                    <span>5M+ Cross-platform impressions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-indigo-400 mt-1">●</span>
+                    <span>5× Average marketing ROI</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-indigo-400 mt-1">●</span>
+                    <span>30+ KOL activation</span>
+                  </li>
+                </ul>
+              </Card>
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* Services Section */}
       <section className="py-32 px-6 " data-section="services">
@@ -865,6 +1129,31 @@ export default function Home() {
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   <Twitter className="w-5 h-5" />
+                </a>
+              </div>
+            </Card>
+
+            <Card className="p-8 bg-zinc-900/50 border-white/10 hover:border-white/20 transition-all flex flex-col">
+              <div className="mb-6">
+                <Quote className="w-12 h-12 text-white/20" />
+              </div>
+              <p className="text-gray-300 leading-relaxed mb-6 flex-grow">
+                I've been working with Magnor Agency for a long time; they are a reliable team who are truly passionate about what they do. Every project brings the same energy and professionalism.
+              </p>
+              <div className="flex items-center justify-between mt-auto">
+                <div>
+                  <p className="font-bold text-white">Umut Aktu</p>
+                  <p className="text-sm text-gray-400">Web3 Content Creator</p>
+                </div>
+                <a
+                  href="https://www.youtube.com/@Umut-Aktu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-red-400 transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                  </svg>
                 </a>
               </div>
             </Card>
