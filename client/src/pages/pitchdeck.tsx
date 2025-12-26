@@ -26,7 +26,6 @@ import bitgetLogo from "/logos/Bitget.png";
 import cmediaLogo from "/logos/CMedia.jpeg";
 import castrumLogo from "/logos/Castrum Capital.jpg";
 import coinscoutLogo from "/logos/Coinscout.jpg";
-import concordiumLogo from "/logos/Concordium.png";
 import disenceLogo from "/logos/Disence.jpg";
 import fattyLogo from "/logos/Fatty.png";
 import kolzLogo from "/logos/KOLZ.png";
@@ -53,7 +52,6 @@ const clients = [
     { name: "CMedia", logo: cmediaLogo },
     { name: "Castrum Capital", logo: castrumLogo },
     { name: "Coinscout", logo: coinscoutLogo },
-    { name: "Concordium", logo: concordiumLogo },
     { name: "Disence", logo: disenceLogo },
     { name: "Fatty", logo: fattyLogo },
     { name: "KOLZ", logo: kolzLogo },
